@@ -28,7 +28,7 @@ simple Node
         double txRate @unit(bps);         // transmission rate
         double radioDelay @unit(s);       // propagation delay of radio link
       volatile int pkLenBits @unit(b);
-        
+        volatile double sendInterval @unit(s) = default(exponential(1s));
         @display("i=device/antennatower_s");
     gates:
         input in @directIn;

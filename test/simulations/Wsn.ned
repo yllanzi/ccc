@@ -24,9 +24,9 @@ network Wsn
 {
    parameters:
        double txRate @unit(bps);
-        
+        int num;
     submodules:
         node: Node;
         sink: Sink;
-  
+  		test[num]:	Node;
 }

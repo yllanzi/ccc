@@ -32,6 +32,7 @@ void Sink::initialize()
 
 void Sink::handleMessage(cMessage *msg)
 {
+    /**
     pkLenBits = &par("pkLenBits");
             txRate = par("txRate");
             node = simulation.getModuleByPath("node");
@@ -44,6 +45,6 @@ void Sink::handleMessage(cMessage *msg)
            pk->setBitLength(pkLenBits->longValue());
            simtime_t duration = pk->getBitLength() / txRate;
            sendDirect(pk, radioDelay, duration, node->gate("in"));
-
+*/
 }
 }; // namespace

@@ -14,46 +14,57 @@
 // 
 
 #include "Node.h"
+#include "comm.h"
+#include <string>
 
+#include <cString>
+using std::string;
 namespace test {
 
 Define_Module(Node);
+Node::Node()
+{
+   i=0;
+    timerMsg = NULL;
+
+   *Nbuf = newBuf(10);
+}
 
 void Node::initialize()
 {
-
-    if (par("sendInitialMessage").boolValue()){
-        pkLenBits = &par("pkLenBits");
-        txRate = par("txRate");
-        sink = simulation.getModuleByPath("sink");
-        if (!sink) error("sink not found");
-  //          else EV << toc << "lello---------\n";
-            char pkname[40]="asdfdf";
-
-
-       cPacket *pk = new cPacket(pkname);
-       pk->setBitLength(pkLenBits->longValue());
-       simtime_t duration = pk->getBitLength() / txRate;
-       sendDirect(pk, radioDelay, duration, sink->gate("in"));
-     //  scheduleAt(simTime(), endTxEvent);
-    }
-
+      timerMsg = new cMessage("timer");
+      scheduleAt(simTime(), timerMsg);
 }
 
 void Node::handleMessage(cMessage *msg)
 {
+    ASSERT(msg==timerMsg);
     pkLenBits = &par("pkLenBits");
             txRate = par("txRate");
             sink = simulation.getModuleByPath("sink");
             if (!sink) error("sink not found");
 
-                char pkname[40]="asdfdf";
 
 
-           cPacket *pk = new cPacket(pkname);
+
+            cPacket *pk = new cPacket("hello");
            pk->setBitLength(pkLenBits->longValue());
            simtime_t duration = pk->getBitLength() / txRate;
            sendDirect(pk, radioDelay, duration, sink->gate("in"));
+
+    scheduleAt(simTime()+par("sendInterval").doubleValue(),timerMsg);
+    if(i<10)i=0;
+    else i++;
+}
+NodeBuf *Node::newBuf(int i){
+    NodeBuf buf[i];
+    for(int j=0;j<i;j++){
+        buf[i].seq = j;
+        string str = "hello";
+        strcpy(buf[i].data,str.c_str());
+
+    }
+    return buf;
 }
 
 }; // namespace

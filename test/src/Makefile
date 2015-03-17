@@ -115,7 +115,8 @@ depend:
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/Node.o: Node.cc \
-	Node.h
+	Node.h \
+	comm.h
 $O/Sink.o: Sink.cc \
 	Sink.h
 
