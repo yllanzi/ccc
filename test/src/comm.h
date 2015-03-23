@@ -11,7 +11,7 @@ using std::string;
 
 struct NodeBuf{
     int seq;
-   char data[10];
+   double  data;
 
 };
 

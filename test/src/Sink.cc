@@ -19,15 +19,12 @@ namespace test {
 
 Define_Module(Sink);
 
-void Sink::initialize()
+void Sink::initialize() //不影响运行
 {
         pkLenBits = &par("pkLenBits");
         txRate = par("txRate");
         node = simulation.getModuleByPath("node");
         if (!node) error("Sink not found");
-
-
-
 }
 
 void Sink::handleMessage(cMessage *msg)
@@ -46,5 +43,6 @@ void Sink::handleMessage(cMessage *msg)
            simtime_t duration = pk->getBitLength() / txRate;
            sendDirect(pk, radioDelay, duration, node->gate("in"));
 */
+// 、   EV << "SINK IS OK , HANDEL FINISHED" << endl;
 }
 }; // namespace

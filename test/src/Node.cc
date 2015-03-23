@@ -24,47 +24,74 @@ namespace test {
 Define_Module(Node);
 Node::Node()
 {
-   i=0;
-    timerMsg = NULL;
 
-   *Nbuf = newBuf(10);
+    timerMsg = NULL;
+    blength =10;
+    Nbuf[10];
+
 }
 
 void Node::initialize()
 {
       timerMsg = new cMessage("timer");
       scheduleAt(simTime(), timerMsg);
+      //初始化buffer，将所有数据置为0
+      seq = 0;
+
+      //init 指针
+      head = tail =0;//先入先出，队列模型
 }
 
 void Node::handleMessage(cMessage *msg)
 {
-    ASSERT(msg==timerMsg);
+    EV << "HELLO THIS IS NODE, START HANDLING THE TIMERMSG" <<endl;
+  ASSERT(msg==timerMsg);
     pkLenBits = &par("pkLenBits");
             txRate = par("txRate");
             sink = simulation.getModuleByPath("sink");
-            if (!sink) error("sink not found");
+            if (!sink) error("sink not found"); //用于寻找节点
 
+            int n = seq%10; //define the position of the buffer
 
-
-
-            cPacket *pk = new cPacket("hello");
+          NodeBuf  a ;
+          a.data =dblrand()*100;
+          a.seq = seq;
+ char pkname[40];
+                    sprintf(pkname,"this is seq = %d ,and data is %lf",  seq++,a.data);
+                    EV << "generating packet " << pkname << endl;
+          cPacket *pk = new cPacket( pkname );
            pk->setBitLength(pkLenBits->longValue());
            simtime_t duration = pk->getBitLength() / txRate;
            sendDirect(pk, radioDelay, duration, sink->gate("in"));
+//seq++;
+
+
+ //   EV <<"HELLO ,THIS IS NODE , HANDLE FINISHED " << endl;
+
 
     scheduleAt(simTime()+par("sendInterval").doubleValue(),timerMsg);
-    if(i<10)i=0;
-    else i++;
-}
-NodeBuf *Node::newBuf(int i){
-    NodeBuf buf[i];
-    for(int j=0;j<i;j++){
-        buf[i].seq = j;
-        string str = "hello";
-        strcpy(buf[i].data,str.c_str());
 
-    }
-    return buf;
 }
+// 初始化节点中数据
+NodeBuf Node::newBuf(){
+    NodeBuf buf;
+   buf.data = 0.0;
+   buf.seq = 0;
+   return buf;
+}
+
+void Node::newData(int  i){
+    Nbuf[i].seq = seq;
+    double data;
+    srand((unsigned)time(NULL));
+    Nbuf[i].data = rand();
+
+}
+/**
+char *Node::setMsg(double data){
+    char[10] str ;
+    sprintf(str,"%lf",data);
+    return *str;
+}*/
 
 }; // namespace
