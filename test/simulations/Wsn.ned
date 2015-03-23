@@ -23,10 +23,9 @@ import test.Sink;
 network Wsn
 {
    parameters:
-       double txRate @unit(bps);
+      	double txRate @unit(bps);
         int num;
     submodules:
-        node: Node;
-        sink: Sink;
+       	sink: Sink;
   		test[num]:	Node;
 }

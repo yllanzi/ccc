@@ -24,7 +24,9 @@ private:
     int head,tail;//记录队列头尾
     //缓冲区长度
     int blength;
-    volatile int seq;//节点中seq序号，作为初始值为0
+    int seq;//节点中seq序号，作为初始值为0
+    cQueue queue;
+    cArray array;
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);

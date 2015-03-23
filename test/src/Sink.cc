@@ -23,8 +23,8 @@ void Sink::initialize() //不影响运行
 {
         pkLenBits = &par("pkLenBits");
         txRate = par("txRate");
-        node = simulation.getModuleByPath("node");
-        if (!node) error("Sink not found");
+   //     node = simulation.getModuleByPath("node");
+   //     if (!node) error("Sink not found");
 }
 
 void Sink::handleMessage(cMessage *msg)

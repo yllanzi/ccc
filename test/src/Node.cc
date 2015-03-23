@@ -35,7 +35,7 @@ void Node::initialize()
 {
       timerMsg = new cMessage("timer");
       scheduleAt(simTime(), timerMsg);
-      //初始化buffer，将所有数据置为0
+
       seq = 0;
 
       //init 指针
@@ -54,6 +54,7 @@ void Node::handleMessage(cMessage *msg)
             int n = seq%10; //define the position of the buffer
 
           NodeBuf  a ;
+
           a.data =dblrand()*100;
           a.seq = seq;
  char pkname[40];
