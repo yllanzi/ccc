@@ -4,6 +4,7 @@
 
 #include <omnetpp.h>
 #include "comm.h"
+#include "Data_m.h"
 using std::string;
 namespace test {
 class Node : public cSimpleModule
@@ -21,17 +22,18 @@ private:
     cModule *sink;
     NodeBuf Nbuf[];
     int i;
-    int head,tail;//¼ÇÂ¼¶ÓÁĞÍ·Î²
-    //»º³åÇø³¤¶È
+    int head,tail;//ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Í·Î²
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     int blength;
-    int seq;//½ÚµãÖĞseqĞòºÅ£¬×÷Îª³õÊ¼ÖµÎª0
+    int seq;//ï¿½Úµï¿½ï¿½ï¿½seqï¿½ï¿½Å£ï¿½ï¿½ï¿½Îªï¿½ï¿½Ê¼ÖµÎª0
     cQueue queue;
     cArray array;
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);
-    NodeBuf newBuf(); //³õÊ¼»¯½ÚµãÖĞµÄÊı¾İ
-    void newData(int i); //¸ø¶¨ĞòºÅ£¬½«ÏàÓ¦µÄ½Úµã·ÅÈëÊı¾İ£¬Ïàµ±ÓÚ²úÉúĞÂÊı¾İ¡£
+   // NodeBuf newBuf(); //
+  //  void newData(int i); //
+    Data *createPkt();
 };
 
 }; // namespace

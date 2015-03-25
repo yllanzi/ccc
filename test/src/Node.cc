@@ -17,7 +17,7 @@
 #include "comm.h"
 #include <string>
 
-#include <cString>
+
 using std::string;
 namespace test {
 
@@ -38,8 +38,8 @@ void Node::initialize()
 
       seq = 0;
 
-      //init 指针
-      head = tail =0;//先入先出，队列模型
+      //init 指锟斤拷
+      head = tail =0;//锟斤拷锟斤拷锟饺筹拷锟斤拷锟斤拷锟斤拷模锟斤拷
 }
 
 void Node::handleMessage(cMessage *msg)
@@ -49,7 +49,7 @@ void Node::handleMessage(cMessage *msg)
     pkLenBits = &par("pkLenBits");
             txRate = par("txRate");
             sink = simulation.getModuleByPath("sink");
-            if (!sink) error("sink not found"); //用于寻找节点
+            if (!sink) error("sink not found"); //锟斤拷锟斤拷寻锟揭节碉拷
 
             int n = seq%10; //define the position of the buffer
 
@@ -58,12 +58,11 @@ void Node::handleMessage(cMessage *msg)
           a.data =dblrand()*100;
           a.seq = seq;
  char pkname[40];
-                    sprintf(pkname,"this is seq = %d ,and data is %lf",  seq++,a.data);
-                    EV << "generating packet " << pkname << endl;
-          cPacket *pk = new cPacket( pkname );
-           pk->setBitLength(pkLenBits->longValue());
-           simtime_t duration = pk->getBitLength() / txRate;
-           sendDirect(pk, radioDelay, duration, sink->gate("in"));
+         sprintf(pkname,"this is seq = %d ,and data is %lf",  seq++,a.data);
+         EV << "generating packet " << pkname << endl;
+         Data *p = createPkt();
+         simtime_t duration = p->getBitLength() / txRate;
+         sendDirect(p, radioDelay, duration, sink->gate("in"));
 //seq++;
 
 
@@ -73,26 +72,18 @@ void Node::handleMessage(cMessage *msg)
     scheduleAt(simTime()+par("sendInterval").doubleValue(),timerMsg);
 
 }
-// 初始化节点中数据
-NodeBuf Node::newBuf(){
-    NodeBuf buf;
-   buf.data = 0.0;
-   buf.seq = 0;
-   return buf;
+Data *Node::createPkt(){
+    double data = dblrand();
+    char temp[20];
+    sprintf(temp,"Node[%d] send %lf",data);
+    Data *pkt  = new Data(temp);
+ //   pkt->setName("hello");
+    pkt->setBitLength(pkLenBits->longValue());
+    pkt->setSource(5);
+    pkt->setSeq(seq);
+    pkt->setData(data);
+    return pkt;
 }
 
-void Node::newData(int  i){
-    Nbuf[i].seq = seq;
-    double data;
-    srand((unsigned)time(NULL));
-    Nbuf[i].data = rand();
-
-}
-/**
-char *Node::setMsg(double data){
-    char[10] str ;
-    sprintf(str,"%lf",data);
-    return *str;
-}*/
 
 }; // namespace
