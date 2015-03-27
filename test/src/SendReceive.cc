@@ -25,19 +25,22 @@ Define_Module(SendReceive);
 
 void SendReceive::initialize()
 {
-    pkLenBits = &par("pkLenBits");
-        txRate = par("txRate");
 
 }
 
 void SendReceive::handleMessage(cMessage *msg)
 {
+
+    pkLenBits = &par("pkLenBits");
+    txRate = par("txRate");
     destination = simulation.getModuleByPath("sink");
     Data *pk = check_and_cast<Data *>(msg);
 
-    simtime_t duration = pk->getBitLength() / txRate;
+    simtime_t duration = pkLenBits->longValue()/ txRate;
     sendDirect(pk, radioDelay, duration, destination->gate("in"));
 
+
+   //     bubble("receive Nack");
 }
 
 

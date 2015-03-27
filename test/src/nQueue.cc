@@ -36,7 +36,7 @@ void nQueue::handleMessage(cMessage *msg)
 {
     double data = atof(msg->getName());
     Data *pkt = createPkt(data);
-    send(pkt,"sr");
+    send(pkt,"sr$o");
     seq++;
 }
 Data *nQueue::createPkt(double data){

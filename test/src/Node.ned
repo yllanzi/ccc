@@ -31,18 +31,26 @@ module Node
         volatile double sendInterval @unit(s) = default(exponential(1s));
         @display("i=device/antennatower_s");
     gates:
-      //  input in @directIn;
+        input in @directIn;
     submodules:
         data: Sensor {
-            @display("p=36,56");
+            parameters:
+            	@display("p=36,56");
         }
         queue: nQueue {
-            @display("p=115,56");
+            parameters:
+           		@display("p=115,56");
         }
         sr: SendReceive {
-            @display("p=204,56");
+            parameters:
+                txRate = txRate;
+            	pkLenBits = pkLenBits;
+            	@display("p=204,56");
+            
+                
         }
     connections:
         data.out --> queue.in;
         queue.sr <--> sr.queue;
+        in -->sr.in;
 }

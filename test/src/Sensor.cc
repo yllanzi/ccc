@@ -35,6 +35,7 @@ void Sensor::handleMessage(cMessage *msg)
     char temp[30];
     sprintf(temp,"%f",data);
     cMessage *sendata = new cMessage(temp);
+    bubble("Get a new data!");
     send(sendata,"out");
 //    scheduleAt(simTime()+par("sendInterval").doubleValue(),timerMsg);
     scheduleAt(simTime()+dblrand(),timerMsg);
