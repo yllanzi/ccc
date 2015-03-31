@@ -30,6 +30,10 @@ void SendReceive::initialize()
 
 void SendReceive::handleMessage(cMessage *msg)
 {
+    cGate *g = gate("in");
+
+if(msg->getArrivalGateId() !=g->getId()){
+
 
     pkLenBits = &par("pkLenBits");
     txRate = par("txRate");
@@ -38,9 +42,12 @@ void SendReceive::handleMessage(cMessage *msg)
 
     simtime_t duration = pkLenBits->longValue()/ txRate;
     sendDirect(pk, radioDelay, duration, destination->gate("in"));
-
-
-   //     bubble("receive Nack");
+}
+else
+{
+     bubble("receive Nack");
+}
+   //
 }
 
 

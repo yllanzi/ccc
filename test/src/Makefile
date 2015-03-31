@@ -28,7 +28,7 @@ PROJECTRELATIVE_PATH = src
 O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
-OBJS = $O/Sink.o $O/Sensor.o $O/nQueue.o $O/SendReceive.o $O/Data_m.o
+OBJS = $O/Sink.o $O/nQueue.o $O/Sensor.o $O/SendReceive.o $O/Data_m.o
 
 # Message files
 MSGFILES = \

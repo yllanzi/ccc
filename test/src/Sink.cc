@@ -31,8 +31,8 @@ void Sink::handleMessage(cMessage *msg)
 
     pkLenBits = &par("pkLenBits");
             txRate = par("txRate");
-            node = simulation.getModuleByPath("test[0]");
-            if (!node) error("sink not found");
+/**            node = simulation.getModuleByPath("node[0]");
+            if (!node) error("node[0] not found");
 
                 char pkname[40]="NACK";
 
@@ -41,7 +41,7 @@ void Sink::handleMessage(cMessage *msg)
            pk->setBitLength(pkLenBits->longValue());
            simtime_t duration = pk->getBitLength() / txRate;
            sendDirect(pk, radioDelay, duration, node->gate("in"));
-
+*/
 // ��   EV << "SINK IS OK , HANDEL FINISHED" << endl;
 }
 }; // namespace

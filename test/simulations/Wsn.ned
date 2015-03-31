@@ -28,6 +28,6 @@ network Wsn
         int num;
     submodules:
        	sink: Sink;
-  		test[num]:	Node;
+  		node[num]:	Node;
   		
 }
