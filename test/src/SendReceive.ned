@@ -13,21 +13,13 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package test.simulations;
-
-import test.Node;
-import test.Sink;
-
-//
-// Two instances (tic and toc) of Txc connected.
-//
-network Wsn
+package test;
+simple SendReceive
 {
-   parameters:
-      	double txRate @unit(bps);
-        int num;
-    submodules:
-       	sink: Sink;
-  		test[num]:	Node;
-  		
+    parameters:
+        @display("i=block/process");
+    gates:
+      input in @directIn;
+      inout queue;
+      
 }

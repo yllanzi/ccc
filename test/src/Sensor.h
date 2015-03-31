@@ -7,10 +7,9 @@
 #include "Data_m.h"
 using std::string;
 namespace test {
-class Node : public cSimpleModule
+class Sensor : public cSimpleModule
 {
-public :
-    Node();
+
 
 private:
     // parameters
@@ -22,10 +21,9 @@ private:
     cModule *sink;
     NodeBuf Nbuf[];
     int i;
-    int head,tail;//��¼����ͷβ
-    //�������
+    int head,tail;
     int blength;
-    int seq;//�ڵ���seq��ţ���Ϊ��ʼֵΪ0
+    int seq;
     cQueue queue;
     cArray array;
 protected:
@@ -33,7 +31,7 @@ protected:
     virtual void handleMessage(cMessage *msg);
    // NodeBuf newBuf(); //
   //  void newData(int i); //
-    Data *createPkt();
+
 };
 
 }; // namespace

@@ -19,30 +19,11 @@ package test;
 // Immediately sends out any message it receives. It can optionally generate
 // a message at the beginning of the simulation, to bootstrap the process.
 //
-module Node
+simple nQueue
 {
     parameters:
-        bool sendInitialMessage = default(false);
-        @signal[state](type="long");
-        @statistic[radioState](source="state"; title="Radio state"; enum="IDLE=0,TRANSMIT=1"; record=vector);
-        double txRate @unit(bps);         // transmission rate
-        double radioDelay @unit(s);       // propagation delay of radio link
-        volatile int pkLenBits @unit(b);
-        volatile double sendInterval @unit(s) = default(exponential(1s));
-        @display("i=device/antennatower_s");
+        @display("i=block/queue");
     gates:
-      //  input in @directIn;
-    submodules:
-        data: Sensor {
-            @display("p=36,56");
-        }
-        queue: nQueue {
-            @display("p=115,56");
-        }
-        sr: SendReceive {
-            @display("p=204,56");
-        }
-    connections:
-        data.out --> queue.in;
-        queue.sr <--> sr.queue;
+        input in;
+        inout sr;
 }

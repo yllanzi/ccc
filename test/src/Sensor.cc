@@ -13,21 +13,34 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package test.simulations;
+#include "Sensor.h"
+#include "comm.h"
+#include <string>
 
-import test.Node;
-import test.Sink;
 
-//
-// Two instances (tic and toc) of Txc connected.
-//
-network Wsn
+using std::string;
+namespace test {
+
+Define_Module(Sensor);
+
+void Sensor::initialize()
 {
-   parameters:
-      	double txRate @unit(bps);
-        int num;
-    submodules:
-       	sink: Sink;
-  		test[num]:	Node;
-  		
+      timerMsg = new cMessage("timer");
+      scheduleAt(simTime(), timerMsg);
 }
+
+void Sensor::handleMessage(cMessage *msg)
+{
+    double data = dblrand()*10;
+    char temp[30];
+    sprintf(temp,"%f",data);
+    cMessage *sendata = new cMessage(temp);
+    send(sendata,"out");
+//    scheduleAt(simTime()+par("sendInterval").doubleValue(),timerMsg);
+    scheduleAt(simTime()+dblrand(),timerMsg);
+
+
+}
+
+
+}; // namespace

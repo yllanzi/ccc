@@ -13,21 +13,26 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package test.simulations;
+#include "SendReceive.h"
+#include "comm.h"
+#include <string>
 
-import test.Node;
-import test.Sink;
 
-//
-// Two instances (tic and toc) of Txc connected.
-//
-network Wsn
+using std::string;
+namespace test {
+
+Define_Module(SendReceive);
+
+void SendReceive::initialize()
 {
-   parameters:
-      	double txRate @unit(bps);
-        int num;
-    submodules:
-       	sink: Sink;
-  		test[num]:	Node;
-  		
+
 }
+
+void SendReceive::handleMessage(cMessage *msg)
+{
+
+
+}
+
+
+}; // namespace
