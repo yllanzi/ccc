@@ -35,8 +35,8 @@ void nQueue::initialize()
 void nQueue::handleMessage(cMessage *msg)
 {
     double data = atof(msg->getName());
- //   Data *pkt = createPkt(data);
-
+    Data *pkt = createPkt(data);
+    send(pkt,"sr");
     seq++;
 }
 Data *nQueue::createPkt(double data){
@@ -48,6 +48,5 @@ Data *nQueue::createPkt(double data){
     pkt->setData(data);
     return pkt;
 }
-
 
 }; // namespace

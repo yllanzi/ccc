@@ -12,7 +12,10 @@ class SendReceive : public cSimpleModule
 
 
 private:
-
+    double txRate;
+    cPar *pkLenBits;
+    cModule *destination;
+    simtime_t radioDelay;
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);

@@ -25,12 +25,18 @@ Define_Module(SendReceive);
 
 void SendReceive::initialize()
 {
+    pkLenBits = &par("pkLenBits");
+        txRate = par("txRate");
 
 }
 
 void SendReceive::handleMessage(cMessage *msg)
 {
+    destination = simulation.getModuleByPath("sink");
+    Data *pk = check_and_cast<Data *>(msg);
 
+    simtime_t duration = pk->getBitLength() / txRate;
+    sendDirect(pk, radioDelay, duration, destination->gate("in"));
 
 }
 

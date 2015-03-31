@@ -20,8 +20,6 @@ protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);
     Data *createPkt(double data);
-  //  void newData(int i); //
-
 };
 
 }; // namespace
