@@ -13,23 +13,12 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package test.simulations;
+package test;
 
-import test.Node;
-import test.Sink;
-import test.Channel;
-
-//
-// Two instances (tic and toc) of Txc connected.
-//
-network Wsn
-{
-	
-	parameters:
-      	double txRate @unit(bps);
-        int num;
-    submodules:
-       	sink: Sink;
-  		node[num]:	Node;
-  
+channel Channel extends ned.DatarateChannel{
+    
+        datarate = 100Mbps;
+        delay  = 100us;
+        per=0.9;
+        
 }

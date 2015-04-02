@@ -3,7 +3,7 @@
 #define __TEST_SINK_H
 
 #include <omnetpp.h>
-
+#include "Data_m.h"
 namespace test {
 class Sink : public cSimpleModule
 {
@@ -12,6 +12,8 @@ private:
     simtime_t radioDelay;
     double txRate;
     cPar *pkLenBits;
+    int seq[30];
+
 
 
     // state variables, event pointers etc

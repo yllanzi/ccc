@@ -23,25 +23,32 @@ void Sink::initialize() //��Ӱ������
 {
         pkLenBits = &par("pkLenBits");
         txRate = par("txRate");
+        for(int i=0;i<30;i++) seq[i]=0;//each node just have one seq[i]
 
 }
 
 void Sink::handleMessage(cMessage *msg)
 {
+    Data *p = check_and_cast<Data *>(msg);
+    int i = p->getSource();
 
-    pkLenBits = &par("pkLenBits");
-            txRate = par("txRate");
-/**            node = simulation.getModuleByPath("node[0]");
-            if (!node) error("node[0] not found");
-
-                char pkname[40]="NACK";
-
+    if(seq[i] != p->getSeq()){
+        pkLenBits = &par("pkLenBits");
+        txRate = par("txRate");
+        int id = getId();
+        char dest[10];
+        sprintf(dest,"node[%d]",id);
+        node = simulation.getModuleByPath(dest);
+        if (!node) error("node not found");
+            char pkname[40];
+            sprintf(pkname,"NACK send to node[%d]",i);
 
            cPacket *pk = new cPacket(pkname);
            pk->setBitLength(pkLenBits->longValue());
            simtime_t duration = pk->getBitLength() / txRate;
            sendDirect(pk, radioDelay, duration, node->gate("in"));
-*/
+    }
+    seq[i]++;
 // ��   EV << "SINK IS OK , HANDEL FINISHED" << endl;
 }
 }; // namespace

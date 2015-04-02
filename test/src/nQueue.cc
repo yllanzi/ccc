@@ -41,9 +41,9 @@ void nQueue::handleMessage(cMessage *msg)
 }
 Data *nQueue::createPkt(double data){
     char temp[20];
-    sprintf(temp," send %lf",data);
+    sprintf(temp," node[%d] send %lf",getParentModule()->getIndex(),data);
     Data *pkt  = new Data(temp);
-    pkt->setSource(5);
+    pkt->setSource(getParentModule()->getIndex());
     pkt->setSeq(seq);
     pkt->setData(data);
     return pkt;
