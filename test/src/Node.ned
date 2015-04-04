@@ -21,7 +21,9 @@ package test;
 //
 module Node
 {
-    parameters:
+   
+        
+        parameters:
         bool sendInitialMessage = default(false);
         @signal[state](type="long");
         @statistic[radioState](source="state"; title="Radio state"; enum="IDLE=0,TRANSMIT=1"; record=vector);
@@ -52,5 +54,6 @@ module Node
     connections:
         data.out --> queue.in;
         queue.sr <--> sr.queue;
-        in -->sr.in;
+        in --> sr.in;
+        sr.out --> {ber = 0.999;} --> sr.In; //use bit error rate to replace the lost rate of the network
 }
