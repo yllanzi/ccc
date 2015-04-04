@@ -16,6 +16,7 @@ private:
     cPar *pkLenBits;
     cModule *destination;
     simtime_t radioDelay;
+    double errorRate;
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);

@@ -30,25 +30,36 @@ void Sink::initialize() //��Ӱ������
 void Sink::handleMessage(cMessage *msg)
 {
     Data *p = check_and_cast<Data *>(msg);
-    int i = p->getSource();
-    bubble("hello ");
-    if(seq[i] != p->getSeq()){
+if(p->hasBitError()){
+    delete(msg);
+    EV << "CHECK THE MSG ,FOUND ERROR \n";
+}
+else{
+    int src = p->getSource();
+
+    if(seq[src] != p->getSeq()){
+        EV << "NODE[" << p->getSeq() <<"]  seq = "<<p->getSeq()<<"\n";
+        bubble("send Nack ");
         pkLenBits = &par("pkLenBits");
         txRate = par("txRate");
-        int id = getId();
+        seq[src] = p->getSeq(); //update the
         char dest[10];
-        sprintf(dest,"node[%d]",id);
+        sprintf(dest,"node[%d]",src);
         node = simulation.getModuleByPath(dest);
         if (!node) error("node not found");
             char pkname[40];
-            sprintf(pkname,"NACK send to node[%d]",i);
-
-           cPacket *pk = new cPacket(pkname);
+            sprintf(pkname,"NACK send to node[%d]",src);
+            cPacket *pk = new cPacket(pkname);
            pk->setBitLength(pkLenBits->longValue());
            simtime_t duration = pk->getBitLength() / txRate;
            sendDirect(pk, radioDelay, duration, node->gate("in"));
+
     }
-    seq[i]++;
+    seq[src]++;
+
+
+
+}
 // ��   EV << "SINK IS OK , HANDEL FINISHED" << endl;
 }
 }; // namespace

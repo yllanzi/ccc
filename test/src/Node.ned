@@ -21,9 +21,7 @@ package test;
 //
 module Node
 {
-   
-        
-        parameters:
+   		parameters:
         bool sendInitialMessage = default(false);
         @signal[state](type="long");
         @statistic[radioState](source="state"; title="Radio state"; enum="IDLE=0,TRANSMIT=1"; record=vector);
@@ -32,6 +30,7 @@ module Node
         volatile int pkLenBits @unit(b);
         volatile double sendInterval @unit(s) = default(exponential(1s));
         @display("i=device/antennatower_s");
+       
     gates:
         input in @directIn;
     submodules:
@@ -55,5 +54,5 @@ module Node
         data.out --> queue.in;
         queue.sr <--> sr.queue;
         in --> sr.in;
-        sr.out --> {ber = 0.999;} --> sr.In; //use bit error rate to replace the lost rate of the network
+      
 }

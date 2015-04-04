@@ -25,26 +25,29 @@ Define_Module(SendReceive);
 
 void SendReceive::initialize()
 {
-
+   errorRate = 0.2;
 }
 
 void SendReceive::handleMessage(cMessage *msg)
 {
 
-    if(msg->getArrivalGateId() == this->gate("queue$i")->getId()){
-        send(msg,"out");
-    }
-    else if(msg->getArrivalGateId() == this->gate("in")->getId())
+    if(msg->getArrivalGateId() == this->gate("in")->getId())
     {
-        bubble("receive Nack");//===================================
+        this->getParentModule()->bubble("receive Nack");//===================================
     }
     else { //send directly to the sink===========gate("In")=========
+
         pkLenBits = &par("pkLenBits");
            txRate = par("txRate");
            destination = simulation.getModuleByPath("sink");
 
            Data *pk = check_and_cast<Data *>(msg);
-           if(!pk->hasBitError()) EV<<"HAS BIT ERROR";
+           if(dblrand()<errorRate)pk->setBitError(true);
+    //       if(msg->isPacket()) EV << "TRUE\n";else EV << "FALSE \n" ;
+           if(pk->hasBitError()) {
+               EV<<"HAS BIT ERROR";
+               EV << "NODE[" << pk->getSource() <<"] seq = "<< pk->getSeq()<< "\n";
+           }
            simtime_t duration = pkLenBits->longValue()/ txRate;
            sendDirect(pk, radioDelay, duration, destination->gate("in"));
 

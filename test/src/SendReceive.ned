@@ -23,8 +23,8 @@ simple SendReceive
     gates:
       input in @directIn;
       inout queue;
-      output out;
-      input In;
+     
+    
       
  
       

@@ -28,6 +28,7 @@ network Wsn
 	parameters:
       	double txRate @unit(bps);
         int num;
+        double errorRate;
     submodules:
        	sink: Sink;
   		node[num]:	Node;
