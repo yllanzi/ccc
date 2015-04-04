@@ -33,27 +33,22 @@ void SendReceive::handleMessage(cMessage *msg)
 
     if(msg->getArrivalGateId() == this->gate("queue$i")->getId()){
         send(msg,"out");
-        bubble("@@@@@@@@@@@@@@");
     }
     else if(msg->getArrivalGateId() == this->gate("in")->getId())
     {
         bubble("receive Nack");//===================================
     }
     else { //send directly to the sink===========gate("In")=========
-
-
-
-        bubble("error packet!!");
-     pkLenBits = &par("pkLenBits");
+        pkLenBits = &par("pkLenBits");
            txRate = par("txRate");
            destination = simulation.getModuleByPath("sink");
 
            Data *pk = check_and_cast<Data *>(msg);
-           if(pk->hasBitError())bubble("error packet!!");
+           if(!pk->hasBitError()) EV<<"HAS BIT ERROR";
            simtime_t duration = pkLenBits->longValue()/ txRate;
            sendDirect(pk, radioDelay, duration, destination->gate("in"));
 
-       // bubble("lost packet");
+
 }
    //
 }

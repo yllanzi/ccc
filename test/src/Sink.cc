@@ -31,7 +31,7 @@ void Sink::handleMessage(cMessage *msg)
 {
     Data *p = check_and_cast<Data *>(msg);
     int i = p->getSource();
-
+    bubble("hello ");
     if(seq[i] != p->getSeq()){
         pkLenBits = &par("pkLenBits");
         txRate = par("txRate");
