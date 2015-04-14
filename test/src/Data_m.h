@@ -24,6 +24,7 @@
  *     int seq;
  *     double data;
  *     int state;
+ *     int type;
  * }
  * </pre>
  */
@@ -34,6 +35,7 @@ class Data : public ::cPacket
     int seq_var;
     double data_var;
     int state_var;
+    int type_var;
 
   private:
     void copy(const Data& other);
@@ -60,6 +62,8 @@ class Data : public ::cPacket
     virtual void setData(double data);
     virtual int getState() const;
     virtual void setState(int state);
+    virtual int getType() const;
+    virtual void setType(int type);
 };
 
 inline void doPacking(cCommBuffer *b, Data& obj) {obj.parsimPack(b);}

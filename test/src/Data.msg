@@ -3,4 +3,5 @@ packet Data{
 	int seq;
 	double data;
 	int state;
+	int type;
 }

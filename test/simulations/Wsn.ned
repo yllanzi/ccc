@@ -31,6 +31,9 @@ network Wsn
         double errorRate;
     submodules:
        	sink: Sink;
-  		node[num]:	Node;
+  		node[num]:	Node{
+  		    parameters:
+  		        errorRate = errorRate;
+  		}
   
 }

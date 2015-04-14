@@ -1,7 +1,7 @@
 /*
  * comm.h
  *
- *  Created on: 2015Äê3ÔÂ16ÈÕ
+ *  Created on: 2015ï¿½ï¿½3ï¿½ï¿½16ï¿½ï¿½
  *      Author: icetech
  */
 #include <string>
@@ -9,11 +9,7 @@
 #define COMM_H_
 using std::string;
 
-struct NodeBuf{
-    int seq;
-   double  data;
 
-};
 
 
 

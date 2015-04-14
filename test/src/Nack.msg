@@ -13,20 +13,9 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package test;
-simple SendReceive
-{
-    parameters:
-        double txRate @unit(bps);
-        volatile int pkLenBits @unit(b);
-        @display("i=block/process");
-        double errorRate;
-    gates:
-      input in @directIn;
-      inout queue;
-     
-    
-      
- 
-      
+
+packet Nack{
+    int status;
+    int num;
+    int seq[20];
 }

@@ -19,7 +19,7 @@ private:
     cMessage *timerMsg;
     // state variables, event pointers etc
     cModule *sink;
-    NodeBuf Nbuf[];
+
     int i;
     int head,tail;
     int blength;

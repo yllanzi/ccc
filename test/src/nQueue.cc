@@ -16,6 +16,7 @@
 #include "nQueue.h"
 #include "comm.h"
 #include <Data_m.h>
+#include "Nack_m.h"
 #include <string>
 
 
@@ -34,10 +35,26 @@ void nQueue::initialize()
 
 void nQueue::handleMessage(cMessage *msg)
 {
-    double data = atof(msg->getName());
-    Data *pkt = createPkt(data);
-    send(pkt,"sr$o");
-    seq++;
+    if(msg->getArrivalGateId() == this->gate("in")->getId()){
+        //receive data from sensor
+         double data = atof(msg->getName());
+         Data *pkt = createPkt(data);
+         buf.insert(pkt);
+         send(pkt->dup(),"sr$o");
+
+         seq++;
+    }
+    else{
+        this->getParentModule()->bubble("cqueue receive the packet");
+        //Nack *ack =  check_and_cast<Nack *>(buf.pop()->dup());
+        Data *ack =  check_and_cast<Data *>(buf.front()->dup());
+        char temp[30];
+        sprintf(temp,"resend data %lf",ack->getData());
+        ack->setName(temp);
+        ack->setType(1);//the data was missed in the previous transmit.
+        send(ack,"sr$o");
+    }
+
 }
 Data *nQueue::createPkt(double data){
     char temp[20];
@@ -46,6 +63,7 @@ Data *nQueue::createPkt(double data){
     pkt->setSource(getParentModule()->getIndex());
     pkt->setSeq(seq);
     pkt->setData(data);
+    pkt->setType(0);//zero means this is sensor data
     return pkt;
 }
 

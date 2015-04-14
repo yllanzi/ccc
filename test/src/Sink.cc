@@ -14,6 +14,7 @@
 //
 
 #include "Sink.h"
+#include "Nack_m.h"
 
 namespace test {
 
@@ -32,34 +33,56 @@ void Sink::handleMessage(cMessage *msg)
     Data *p = check_and_cast<Data *>(msg);
 if(p->hasBitError()){
     delete(msg);
-    EV << "CHECK THE MSG ,FOUND ERROR \n";
+ //   EV << "CHECK THE MSG ,FOUND ERROR \n";
 }
-else{
+else if(p->getType() == 0){
     int src = p->getSource();
 
     if(seq[src] != p->getSeq()){
-        EV << "NODE[" << p->getSeq() <<"]  seq = "<<p->getSeq()<<"\n";
-        bubble("send Nack ");
+        //set parameters
         pkLenBits = &par("pkLenBits");
         txRate = par("txRate");
-        seq[src] = p->getSeq(); //update the
+
+        //notice the user
+        EV << "NODE[" << p->getSeq() <<"]  seq = "<<p->getSeq()<<"\n";
+        bubble("send Nack");
+
+        //set destination
         char dest[10];
         sprintf(dest,"node[%d]",src);
         node = simulation.getModuleByPath(dest);
         if (!node) error("node not found");
-            char pkname[40];
-            sprintf(pkname,"NACK send to node[%d]",src);
-            cPacket *pk = new cPacket(pkname);
-           pk->setBitLength(pkLenBits->longValue());
-           simtime_t duration = pk->getBitLength() / txRate;
-           sendDirect(pk, radioDelay, duration, node->gate("in"));
 
+        //create the packet
+        Nack *pk = createNack(seq[src]);
+        pk->setBitLength(pkLenBits->longValue());
+        simtime_t duration = pk->getBitLength() / txRate;
+        sendDirect(pk, radioDelay, duration, node->gate("in"));
+
+        //update the check symbol
+        seq[src] = p->getSeq();
+        seq[src]++;
     }
-    seq[src]++;
+    else {
+        //receive the missing data
+        bubble("receive the missing data");
+    }
+
 
 
 
 }
 // ��   EV << "SINK IS OK , HANDEL FINISHED" << endl;
+}
+
+Nack *Sink::createNack(int seq){
+    char temp[20];
+    sprintf(temp,"Nack %d",seq);
+    Nack *pkt = new Nack(temp);
+    pkt->setSeq(0,seq);
+    pkt->setNum(1);
+    pkt->setStatus(0);
+
+return pkt;
 }
 }; // namespace

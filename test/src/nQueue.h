@@ -3,17 +3,15 @@
 #define __TEST_NODE_H
 
 #include <omnetpp.h>
-#include "comm.h"
 #include "Data_m.h"
 using std::string;
 namespace test {
 class nQueue : public cSimpleModule
 {
-
-
 private:
     int seq;
-    cQueue buf;
+    cPacketQueue buf;
+    Data *q[40];
 
 
 protected:

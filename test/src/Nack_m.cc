@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by nedtool 4.6 from Data.msg.
+// Generated file, do not edit! Created by nedtool 4.6 from Nack.msg.
 //
 
 // Disable warnings about unused variables, empty switch stmts, etc:
@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "Data_m.h"
+#include "Nack_m.h"
 
 USING_NAMESPACE
 
@@ -53,27 +53,26 @@ inline std::ostream& operator<<(std::ostream& out, const std::vector<T,A>& vec)
 template<typename T>
 inline std::ostream& operator<<(std::ostream& out,const T&) {return out;}
 
-Register_Class(Data);
+Register_Class(Nack);
 
-Data::Data(const char *name, int kind) : ::cPacket(name,kind)
+Nack::Nack(const char *name, int kind) : ::cPacket(name,kind)
 {
-    this->source_var = 0;
-    this->seq_var = 0;
-    this->data_var = 0;
-    this->state_var = 0;
-    this->type_var = 0;
+    this->status_var = 0;
+    this->num_var = 0;
+    for (unsigned int i=0; i<20; i++)
+        this->seq_var[i] = 0;
 }
 
-Data::Data(const Data& other) : ::cPacket(other)
+Nack::Nack(const Nack& other) : ::cPacket(other)
 {
     copy(other);
 }
 
-Data::~Data()
+Nack::~Nack()
 {
 }
 
-Data& Data::operator=(const Data& other)
+Nack& Nack::operator=(const Nack& other)
 {
     if (this==&other) return *this;
     ::cPacket::operator=(other);
@@ -81,90 +80,72 @@ Data& Data::operator=(const Data& other)
     return *this;
 }
 
-void Data::copy(const Data& other)
+void Nack::copy(const Nack& other)
 {
-    this->source_var = other.source_var;
-    this->seq_var = other.seq_var;
-    this->data_var = other.data_var;
-    this->state_var = other.state_var;
-    this->type_var = other.type_var;
+    this->status_var = other.status_var;
+    this->num_var = other.num_var;
+    for (unsigned int i=0; i<20; i++)
+        this->seq_var[i] = other.seq_var[i];
 }
 
-void Data::parsimPack(cCommBuffer *b)
+void Nack::parsimPack(cCommBuffer *b)
 {
     ::cPacket::parsimPack(b);
-    doPacking(b,this->source_var);
-    doPacking(b,this->seq_var);
-    doPacking(b,this->data_var);
-    doPacking(b,this->state_var);
-    doPacking(b,this->type_var);
+    doPacking(b,this->status_var);
+    doPacking(b,this->num_var);
+    doPacking(b,this->seq_var,20);
 }
 
-void Data::parsimUnpack(cCommBuffer *b)
+void Nack::parsimUnpack(cCommBuffer *b)
 {
     ::cPacket::parsimUnpack(b);
-    doUnpacking(b,this->source_var);
-    doUnpacking(b,this->seq_var);
-    doUnpacking(b,this->data_var);
-    doUnpacking(b,this->state_var);
-    doUnpacking(b,this->type_var);
+    doUnpacking(b,this->status_var);
+    doUnpacking(b,this->num_var);
+    doUnpacking(b,this->seq_var,20);
 }
 
-int Data::getSource() const
+int Nack::getStatus() const
 {
-    return source_var;
+    return status_var;
 }
 
-void Data::setSource(int source)
+void Nack::setStatus(int status)
 {
-    this->source_var = source;
+    this->status_var = status;
 }
 
-int Data::getSeq() const
+int Nack::getNum() const
 {
-    return seq_var;
+    return num_var;
 }
 
-void Data::setSeq(int seq)
+void Nack::setNum(int num)
 {
-    this->seq_var = seq;
+    this->num_var = num;
 }
 
-double Data::getData() const
+unsigned int Nack::getSeqArraySize() const
 {
-    return data_var;
+    return 20;
 }
 
-void Data::setData(double data)
+int Nack::getSeq(unsigned int k) const
 {
-    this->data_var = data;
+    if (k>=20) throw cRuntimeError("Array of size 20 indexed by %lu", (unsigned long)k);
+    return seq_var[k];
 }
 
-int Data::getState() const
+void Nack::setSeq(unsigned int k, int seq)
 {
-    return state_var;
+    if (k>=20) throw cRuntimeError("Array of size 20 indexed by %lu", (unsigned long)k);
+    this->seq_var[k] = seq;
 }
 
-void Data::setState(int state)
-{
-    this->state_var = state;
-}
-
-int Data::getType() const
-{
-    return type_var;
-}
-
-void Data::setType(int type)
-{
-    this->type_var = type;
-}
-
-class DataDescriptor : public cClassDescriptor
+class NackDescriptor : public cClassDescriptor
 {
   public:
-    DataDescriptor();
-    virtual ~DataDescriptor();
+    NackDescriptor();
+    virtual ~NackDescriptor();
 
     virtual bool doesSupport(cObject *obj) const;
     virtual const char *getProperty(const char *propertyname) const;
@@ -183,34 +164,34 @@ class DataDescriptor : public cClassDescriptor
     virtual void *getFieldStructPointer(void *object, int field, int i) const;
 };
 
-Register_ClassDescriptor(DataDescriptor);
+Register_ClassDescriptor(NackDescriptor);
 
-DataDescriptor::DataDescriptor() : cClassDescriptor("Data", "cPacket")
+NackDescriptor::NackDescriptor() : cClassDescriptor("Nack", "cPacket")
 {
 }
 
-DataDescriptor::~DataDescriptor()
+NackDescriptor::~NackDescriptor()
 {
 }
 
-bool DataDescriptor::doesSupport(cObject *obj) const
+bool NackDescriptor::doesSupport(cObject *obj) const
 {
-    return dynamic_cast<Data *>(obj)!=NULL;
+    return dynamic_cast<Nack *>(obj)!=NULL;
 }
 
-const char *DataDescriptor::getProperty(const char *propertyname) const
+const char *NackDescriptor::getProperty(const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     return basedesc ? basedesc->getProperty(propertyname) : NULL;
 }
 
-int DataDescriptor::getFieldCount(void *object) const
+int NackDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 5+basedesc->getFieldCount(object) : 5;
+    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
 }
 
-unsigned int DataDescriptor::getFieldTypeFlags(void *object, int field) const
+unsigned int NackDescriptor::getFieldTypeFlags(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -221,14 +202,12 @@ unsigned int DataDescriptor::getFieldTypeFlags(void *object, int field) const
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,
         FD_ISEDITABLE,
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
-        FD_ISEDITABLE,
+        FD_ISARRAY | FD_ISEDITABLE,
     };
-    return (field>=0 && field<5) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
 }
 
-const char *DataDescriptor::getFieldName(void *object, int field) const
+const char *NackDescriptor::getFieldName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -237,28 +216,24 @@ const char *DataDescriptor::getFieldName(void *object, int field) const
         field -= basedesc->getFieldCount(object);
     }
     static const char *fieldNames[] = {
-        "source",
+        "status",
+        "num",
         "seq",
-        "data",
-        "state",
-        "type",
     };
-    return (field>=0 && field<5) ? fieldNames[field] : NULL;
+    return (field>=0 && field<3) ? fieldNames[field] : NULL;
 }
 
-int DataDescriptor::findField(void *object, const char *fieldName) const
+int NackDescriptor::findField(void *object, const char *fieldName) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
-    if (fieldName[0]=='s' && strcmp(fieldName, "source")==0) return base+0;
-    if (fieldName[0]=='s' && strcmp(fieldName, "seq")==0) return base+1;
-    if (fieldName[0]=='d' && strcmp(fieldName, "data")==0) return base+2;
-    if (fieldName[0]=='s' && strcmp(fieldName, "state")==0) return base+3;
-    if (fieldName[0]=='t' && strcmp(fieldName, "type")==0) return base+4;
+    if (fieldName[0]=='s' && strcmp(fieldName, "status")==0) return base+0;
+    if (fieldName[0]=='n' && strcmp(fieldName, "num")==0) return base+1;
+    if (fieldName[0]=='s' && strcmp(fieldName, "seq")==0) return base+2;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
-const char *DataDescriptor::getFieldTypeString(void *object, int field) const
+const char *NackDescriptor::getFieldTypeString(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -269,14 +244,12 @@ const char *DataDescriptor::getFieldTypeString(void *object, int field) const
     static const char *fieldTypeStrings[] = {
         "int",
         "int",
-        "double",
-        "int",
         "int",
     };
-    return (field>=0 && field<5) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
 }
 
-const char *DataDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+const char *NackDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -289,7 +262,7 @@ const char *DataDescriptor::getFieldProperty(void *object, int field, const char
     }
 }
 
-int DataDescriptor::getArraySize(void *object, int field) const
+int NackDescriptor::getArraySize(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -297,13 +270,14 @@ int DataDescriptor::getArraySize(void *object, int field) const
             return basedesc->getArraySize(object, field);
         field -= basedesc->getFieldCount(object);
     }
-    Data *pp = (Data *)object; (void)pp;
+    Nack *pp = (Nack *)object; (void)pp;
     switch (field) {
+        case 2: return 20;
         default: return 0;
     }
 }
 
-std::string DataDescriptor::getFieldAsString(void *object, int field, int i) const
+std::string NackDescriptor::getFieldAsString(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -311,18 +285,16 @@ std::string DataDescriptor::getFieldAsString(void *object, int field, int i) con
             return basedesc->getFieldAsString(object,field,i);
         field -= basedesc->getFieldCount(object);
     }
-    Data *pp = (Data *)object; (void)pp;
+    Nack *pp = (Nack *)object; (void)pp;
     switch (field) {
-        case 0: return long2string(pp->getSource());
-        case 1: return long2string(pp->getSeq());
-        case 2: return double2string(pp->getData());
-        case 3: return long2string(pp->getState());
-        case 4: return long2string(pp->getType());
+        case 0: return long2string(pp->getStatus());
+        case 1: return long2string(pp->getNum());
+        case 2: return long2string(pp->getSeq(i));
         default: return "";
     }
 }
 
-bool DataDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+bool NackDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -330,18 +302,16 @@ bool DataDescriptor::setFieldAsString(void *object, int field, int i, const char
             return basedesc->setFieldAsString(object,field,i,value);
         field -= basedesc->getFieldCount(object);
     }
-    Data *pp = (Data *)object; (void)pp;
+    Nack *pp = (Nack *)object; (void)pp;
     switch (field) {
-        case 0: pp->setSource(string2long(value)); return true;
-        case 1: pp->setSeq(string2long(value)); return true;
-        case 2: pp->setData(string2double(value)); return true;
-        case 3: pp->setState(string2long(value)); return true;
-        case 4: pp->setType(string2long(value)); return true;
+        case 0: pp->setStatus(string2long(value)); return true;
+        case 1: pp->setNum(string2long(value)); return true;
+        case 2: pp->setSeq(i,string2long(value)); return true;
         default: return false;
     }
 }
 
-const char *DataDescriptor::getFieldStructName(void *object, int field) const
+const char *NackDescriptor::getFieldStructName(void *object, int field) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -354,7 +324,7 @@ const char *DataDescriptor::getFieldStructName(void *object, int field) const
     };
 }
 
-void *DataDescriptor::getFieldStructPointer(void *object, int field, int i) const
+void *NackDescriptor::getFieldStructPointer(void *object, int field, int i) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     if (basedesc) {
@@ -362,7 +332,7 @@ void *DataDescriptor::getFieldStructPointer(void *object, int field, int i) cons
             return basedesc->getFieldStructPointer(object, field, i);
         field -= basedesc->getFieldCount(object);
     }
-    Data *pp = (Data *)object; (void)pp;
+    Nack *pp = (Nack *)object; (void)pp;
     switch (field) {
         default: return NULL;
     }

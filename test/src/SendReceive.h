@@ -5,6 +5,7 @@
 #include <omnetpp.h>
 #include "comm.h"
 #include "Data_m.h"
+#include "Nack_m.h"
 using std::string;
 namespace test {
 class SendReceive : public cSimpleModule

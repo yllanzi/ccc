@@ -28,11 +28,18 @@ PROJECTRELATIVE_PATH = src
 O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
-OBJS = $O/Sink.o $O/Sensor.o $O/nQueue.o $O/SendReceive.o $O/Data_m.o
+OBJS = \
+    $O/Sink.o \
+    $O/Sensor.o \
+    $O/nQueue.o \
+    $O/SendReceive.o \
+    $O/Data_m.o \
+    $O/Nack_m.o
 
 # Message files
 MSGFILES = \
-    Data.msg
+    Data.msg \
+    Nack.msg
 
 #------------------------------------------------------------------------------
 
@@ -117,8 +124,11 @@ depend:
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/Data_m.o: Data_m.cc \
 	Data_m.h
+$O/Nack_m.o: Nack_m.cc \
+	Nack_m.h
 $O/SendReceive.o: SendReceive.cc \
 	Data_m.h \
+	Nack_m.h \
 	SendReceive.h \
 	comm.h
 $O/Sensor.o: Sensor.cc \
@@ -127,9 +137,11 @@ $O/Sensor.o: Sensor.cc \
 	comm.h
 $O/Sink.o: Sink.cc \
 	Data_m.h \
+	Nack_m.h \
 	Sink.h
 $O/nQueue.o: nQueue.cc \
 	Data_m.h \
+	Nack_m.h \
 	comm.h \
 	nQueue.h
 
