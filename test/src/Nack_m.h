@@ -23,6 +23,7 @@
  *     int status;
  *     int num;
  *     int seq[20];
+ *     int finalkey;
  * }
  * </pre>
  */
@@ -32,6 +33,7 @@ class Nack : public ::cPacket
     int status_var;
     int num_var;
     int seq_var[20];
+    int finalkey_var;
 
   private:
     void copy(const Nack& other);
@@ -57,6 +59,8 @@ class Nack : public ::cPacket
     virtual unsigned int getSeqArraySize() const;
     virtual int getSeq(unsigned int k) const;
     virtual void setSeq(unsigned int k, int seq);
+    virtual int getFinalkey() const;
+    virtual void setFinalkey(int finalkey);
 };
 
 inline void doPacking(cCommBuffer *b, Nack& obj) {obj.parsimPack(b);}

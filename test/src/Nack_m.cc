@@ -61,6 +61,7 @@ Nack::Nack(const char *name, int kind) : ::cPacket(name,kind)
     this->num_var = 0;
     for (unsigned int i=0; i<20; i++)
         this->seq_var[i] = 0;
+    this->finalkey_var = 0;
 }
 
 Nack::Nack(const Nack& other) : ::cPacket(other)
@@ -86,6 +87,7 @@ void Nack::copy(const Nack& other)
     this->num_var = other.num_var;
     for (unsigned int i=0; i<20; i++)
         this->seq_var[i] = other.seq_var[i];
+    this->finalkey_var = other.finalkey_var;
 }
 
 void Nack::parsimPack(cCommBuffer *b)
@@ -94,6 +96,7 @@ void Nack::parsimPack(cCommBuffer *b)
     doPacking(b,this->status_var);
     doPacking(b,this->num_var);
     doPacking(b,this->seq_var,20);
+    doPacking(b,this->finalkey_var);
 }
 
 void Nack::parsimUnpack(cCommBuffer *b)
@@ -102,6 +105,7 @@ void Nack::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->status_var);
     doUnpacking(b,this->num_var);
     doUnpacking(b,this->seq_var,20);
+    doUnpacking(b,this->finalkey_var);
 }
 
 int Nack::getStatus() const
@@ -139,6 +143,16 @@ void Nack::setSeq(unsigned int k, int seq)
 {
     if (k>=20) throw cRuntimeError("Array of size 20 indexed by %lu", (unsigned long)k);
     this->seq_var[k] = seq;
+}
+
+int Nack::getFinalkey() const
+{
+    return finalkey_var;
+}
+
+void Nack::setFinalkey(int finalkey)
+{
+    this->finalkey_var = finalkey;
 }
 
 class NackDescriptor : public cClassDescriptor
@@ -188,7 +202,7 @@ const char *NackDescriptor::getProperty(const char *propertyname) const
 int NackDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
+    return basedesc ? 4+basedesc->getFieldCount(object) : 4;
 }
 
 unsigned int NackDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -203,8 +217,9 @@ unsigned int NackDescriptor::getFieldTypeFlags(void *object, int field) const
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISARRAY | FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
 }
 
 const char *NackDescriptor::getFieldName(void *object, int field) const
@@ -219,8 +234,9 @@ const char *NackDescriptor::getFieldName(void *object, int field) const
         "status",
         "num",
         "seq",
+        "finalkey",
     };
-    return (field>=0 && field<3) ? fieldNames[field] : NULL;
+    return (field>=0 && field<4) ? fieldNames[field] : NULL;
 }
 
 int NackDescriptor::findField(void *object, const char *fieldName) const
@@ -230,6 +246,7 @@ int NackDescriptor::findField(void *object, const char *fieldName) const
     if (fieldName[0]=='s' && strcmp(fieldName, "status")==0) return base+0;
     if (fieldName[0]=='n' && strcmp(fieldName, "num")==0) return base+1;
     if (fieldName[0]=='s' && strcmp(fieldName, "seq")==0) return base+2;
+    if (fieldName[0]=='f' && strcmp(fieldName, "finalkey")==0) return base+3;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -245,8 +262,9 @@ const char *NackDescriptor::getFieldTypeString(void *object, int field) const
         "int",
         "int",
         "int",
+        "int",
     };
-    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *NackDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -290,6 +308,7 @@ std::string NackDescriptor::getFieldAsString(void *object, int field, int i) con
         case 0: return long2string(pp->getStatus());
         case 1: return long2string(pp->getNum());
         case 2: return long2string(pp->getSeq(i));
+        case 3: return long2string(pp->getFinalkey());
         default: return "";
     }
 }
@@ -307,6 +326,7 @@ bool NackDescriptor::setFieldAsString(void *object, int field, int i, const char
         case 0: pp->setStatus(string2long(value)); return true;
         case 1: pp->setNum(string2long(value)); return true;
         case 2: pp->setSeq(i,string2long(value)); return true;
+        case 3: pp->setFinalkey(string2long(value)); return true;
         default: return false;
     }
 }

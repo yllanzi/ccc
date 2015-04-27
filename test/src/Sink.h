@@ -17,12 +17,16 @@ private:
     int seq[30];
     cModule *node;
     cMessage *endTxEvent;
-    enum {IDLE=0, TRANSMIT=1} state;
-    simsignal_t stateSignal;
+    int checkPoint;
+    bool miss;
+    int  misq[30];
+    int key;
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);
-    Nack *createNack(int seq);
+    Nack *createNack();
+    bool isCheckPoint(int seq, int next);
+    void sendNack(Data *p);
 };
 
 }; // namespace

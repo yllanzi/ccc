@@ -18,9 +18,6 @@
 #include <Data_m.h>
 #include "Nack_m.h"
 #include <string>
-
-
-
 using std::string;
 namespace test {
 
@@ -30,7 +27,7 @@ Define_Module(nQueue);
 void nQueue::initialize()
 {
     seq = 0;
-
+    qlength = queue.length();
 }
 
 void nQueue::handleMessage(cMessage *msg)
@@ -39,22 +36,29 @@ void nQueue::handleMessage(cMessage *msg)
         //receive data from sensor
          double data = atof(msg->getName());
          Data *pkt = createPkt(data);
-         buf.insert(pkt);
+         queue.insert(pkt->dup());
+         int i =buf.add(pkt);
+         EV << "the data index = "<< i <<"\n";
          send(pkt->dup(),"sr$o");
-
          seq++;
     }
     else{
-        this->getParentModule()->bubble("cqueue receive the packet");
-        //Nack *ack =  check_and_cast<Nack *>(buf.pop()->dup());
-        Data *ack =  check_and_cast<Data *>(buf.front()->dup());
-        char temp[30];
-        sprintf(temp,"resend data %lf",ack->getData());
-        ack->setName(temp);
-        ack->setType(1);//the data was missed in the previous transmit.
-        send(ack,"sr$o");
+        this->getParentModule()->bubble("cqueue receive Nack");
+        Nack *nack =  check_and_cast<Nack *>(msg);
+        int num = nack->getNum();
+        int seq;
+        for(int i=0;i<num;i++){
+            seq = nack->getSeq(i);
+            Data *ack =  check_and_cast<Data *>(buf.get(seq)->dup());
+                                //  给出头的消息副本next
+            char temp[30];
+            sprintf(temp,"resend data %lf,seq = %d",ack->getData(),ack->getSeq());
+            ack->setName(temp);
+            ack->setType(1);//the data was missed in the previous transmit.
+            send(ack,"sr$o");
+            sleep(1);
+        }
     }
-
 }
 Data *nQueue::createPkt(double data){
     char temp[20];
@@ -64,6 +68,7 @@ Data *nQueue::createPkt(double data){
     pkt->setSeq(seq);
     pkt->setData(data);
     pkt->setType(0);//zero means this is sensor data
+    pkt->setState(5);
     return pkt;
 }
 

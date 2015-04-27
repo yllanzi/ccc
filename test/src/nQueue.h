@@ -10,8 +10,10 @@ class nQueue : public cSimpleModule
 {
 private:
     int seq;
-    cPacketQueue buf;
+    cPacketQueue queue;
     Data *q[40];
+    cArray buf;
+    int qlength;
 
 
 protected:
