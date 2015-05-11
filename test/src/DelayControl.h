@@ -11,6 +11,7 @@ class DelayControl : public cSimpleModule
 private:
     cPacketQueue d;
     cPacketQueue n;
+    simtime_t lastTime;
 
 protected:
     virtual void initialize();

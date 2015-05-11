@@ -3,6 +3,8 @@
   <inputs>
     <inputs name="*.vec"/>
     <inputs name="*.sca"/>
+    <inputs name="*.vec"/>
+    <inputs name="*.sca"/>
   </inputs>
   <datasets>
     <datasets name="70% error">

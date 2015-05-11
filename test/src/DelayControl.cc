@@ -12,7 +12,7 @@ Define_Module(DelayControl);
 
 void DelayControl::initialize()
 {
-
+lastTime = simTime();
 }
 
 void DelayControl::handleMessage(cMessage *msg)
@@ -32,7 +32,9 @@ void DelayControl::handleMessage(cMessage *msg)
             }
             else n.insert(pk);
             cMessage *hello = new cMessage("hello");
-            scheduleAt(simTime(),hello);
+            scheduleAt(lastTime+15,hello);
+            lastTime = simTime();
+            EV <<pk->getState()<<"this is status of sensor \n";
         }
     EV <<simTime()<<"  CORRECT \n";
 

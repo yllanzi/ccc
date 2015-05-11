@@ -88,7 +88,7 @@ return pkt;
 }
 bool Sink::isCheckPoint(int seq,int next,int source){
     if(seq >= checkpt[source]){
-        checkPoint += next;
+        checkpt[source] += next;
         return true;
     }
     else
