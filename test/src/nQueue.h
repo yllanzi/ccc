@@ -14,12 +14,15 @@ private:
     Data *q[40];
     cArray buf;
     int qlength;
-
+    double wrong;
+    double all;
+    int s;
 
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);
     Data *createPkt(double data);
+    cOutVector rate;
 };
 
 }; // namespace

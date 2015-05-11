@@ -21,7 +21,7 @@ package test;
 //
 module Node
 {
-   		parameters:
+    parameters:
         bool sendInitialMessage = default(false);
         @signal[state](type="long");
         @statistic[radioState](source="state"; title="Radio state"; enum="IDLE=0,TRANSMIT=1"; record=vector);
@@ -31,30 +31,33 @@ module Node
         volatile double sendInterval @unit(s) = default(exponential(1s));
         volatile double errorRate;
         @display("i=device/antennatower_s");
-       
+
     gates:
         input in @directIn;
     submodules:
         data: Sensor {
             parameters:
-            	@display("p=36,56");
+                @display("p=31,84");
         }
         queue: nQueue {
             parameters:
-           		@display("p=115,56");
+                @display("p=114,84");
         }
         sr: SendReceive {
             parameters:
                 txRate = txRate;
-            	pkLenBits = pkLenBits;
-            	@display("p=204,56");
-            	errorRate = errorRate;
-            
-                
+                pkLenBits = pkLenBits;
+                @display("p=198,134");
+                errorRate = errorRate;
+        }
+        control: DelayControl {
+            parameters:
+                @display("p=198,34");
         }
     connections:
         data.out --> queue.in;
-        queue.sr <--> sr.queue;
-        in --> sr.in;
-      
+		in --> sr.in;
+		control.send --> sr.delay;
+        queue.control --> control.receive;
+        sr.queue --> queue.sr;
 }

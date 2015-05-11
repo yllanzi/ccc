@@ -1,0 +1,21 @@
+file 5375 1431324398                                            
+version 2
+run General-0-20150511-14:04:55-7688
+attr configname General
+attr datetime 20150511-14:04:55
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars $jobs=5
+attr iterationvars2 "$jobs=5, $repetition=0"
+attr jobs 5
+attr measurement $jobs=5
+attr network Wsn
+attr processid 7688
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+vector 3  Wsn.node[0].queue  "rate of channel"  ETV
+3	463 4912 2 788 0 48.218332783272 132 0.68807339449541 1 95.80577872945 69.970586888924

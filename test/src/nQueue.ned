@@ -23,7 +23,9 @@ simple nQueue
 {
     parameters:
         @display("i=block/queue");
+        int num;
     gates:
         input in;
-        inout sr;
+        input sr;
+        output control; 
 }

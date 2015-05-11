@@ -24,10 +24,15 @@ void Sink::initialize() //��Ӱ������
 {
         pkLenBits = &par("pkLenBits");
         txRate = par("txRate");
-        for(int i=0;i<30;i++) seq[i]=0;//each node just have one seq[i]
-        checkPoint = 1;
+        for(int i=0;i<30;i++) {
+            seq[i]=0;//each node just have one seq[i]
+            checkpt[i]=1;
+        }
+
         miss = false;
         key = 0;//mark misnum in one group
+        nack.setName("length of sink");
+        int n=0;
 }
 
 void Sink::handleMessage(cMessage *msg)
@@ -42,7 +47,7 @@ if(p->hasBitError()){
 }
 else if(p->getType() == 0){ //is new data
     int src = p->getSource();
-    if(isCheckPoint(p->getSeq(),p->getState())){
+    if(isCheckPoint(p->getSeq(),p->getState(),p->getSource())){
             if(miss){
                 sendNack(p);
                 miss =false;
@@ -81,8 +86,8 @@ Nack *Sink::createNack(){
 
 return pkt;
 }
-bool Sink::isCheckPoint(int seq,int next){
-    if(seq >= checkPoint){
+bool Sink::isCheckPoint(int seq,int next,int source){
+    if(seq >= checkpt[source]){
         checkPoint += next;
         return true;
     }

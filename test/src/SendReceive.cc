@@ -34,7 +34,7 @@ void SendReceive::handleMessage(cMessage *msg)
     if(msg->getArrivalGateId() == this->gate("in")->getId())
     {
         Nack *pk = check_and_cast<Nack *>(msg);
-        send(pk,"queue$o");
+        send(pk,"queue");
     }
     else { //send directly to the sink===========gate("In")=========
 

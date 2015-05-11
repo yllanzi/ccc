@@ -20,13 +20,15 @@ private:
     int checkPoint;
     bool miss;
     int  misq[30];
+    int checkpt[30];
     int key;
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);
     Nack *createNack();
-    bool isCheckPoint(int seq, int next);
+    bool isCheckPoint(int seq, int next,int source);
     void sendNack(Data *p);
+    cOutVector nack;
 };
 
 }; // namespace

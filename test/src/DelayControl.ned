@@ -14,16 +14,11 @@
 // 
 
 package test;
-simple SendReceive
+simple DelayControl
 {
     parameters:
-        double txRate @unit(bps);
-        volatile int pkLenBits @unit(b);
-        @display("i=block/process");
-        double errorRate;
+        @display("i=block/delay");
     gates:
-      input in @directIn;
-      output queue;
-      input delay;
-     
+      input receive;
+      output send;
 }

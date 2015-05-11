@@ -29,10 +29,11 @@ O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
 OBJS = \
-    $O/Sink.o \
-    $O/Sensor.o \
+    $O/DelayControl.o \
     $O/nQueue.o \
     $O/SendReceive.o \
+    $O/Sensor.o \
+    $O/Sink.o \
     $O/Data_m.o \
     $O/Nack_m.o
 
@@ -124,6 +125,10 @@ depend:
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/Data_m.o: Data_m.cc \
 	Data_m.h
+$O/DelayControl.o: DelayControl.cc \
+	Data_m.h \
+	DelayControl.h \
+	comm.h
 $O/Nack_m.o: Nack_m.cc \
 	Nack_m.h
 $O/SendReceive.o: SendReceive.cc \

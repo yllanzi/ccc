@@ -27,11 +27,16 @@ Define_Module(nQueue);
 void nQueue::initialize()
 {
     seq = 0;
+    all = wrong = 0.0;
     qlength = queue.length();
+    rate.setName("rate of channel");
+    s = par("num");
+
 }
 
 void nQueue::handleMessage(cMessage *msg)
 {
+    all++;
     if(msg->getArrivalGateId() == this->gate("in")->getId()){
         //receive data from sensor
          double data = atof(msg->getName());
@@ -39,11 +44,12 @@ void nQueue::handleMessage(cMessage *msg)
          queue.insert(pkt->dup());
          int i =buf.add(pkt);
          EV << "the data index = "<< i <<"\n";
-         send(pkt->dup(),"sr$o");
+         send(pkt->dup(),"control");
          seq++;
     }
     else{
         this->getParentModule()->bubble("cqueue receive Nack");
+        wrong++;
         Nack *nack =  check_and_cast<Nack *>(msg);
         int num = nack->getNum();
         int seq;
@@ -55,10 +61,13 @@ void nQueue::handleMessage(cMessage *msg)
             sprintf(temp,"resend data %lf,seq = %d",ack->getData(),ack->getSeq());
             ack->setName(temp);
             ack->setType(1);//the data was missed in the previous transmit.
-            send(ack,"sr$o");
-            sleep(1);
+            send(ack,"control");
+
         }
     }
+    double r = (all-wrong)/all;
+    rate.record(r);
+
 }
 Data *nQueue::createPkt(double data){
     char temp[20];
@@ -68,7 +77,7 @@ Data *nQueue::createPkt(double data){
     pkt->setSeq(seq);
     pkt->setData(data);
     pkt->setType(0);//zero means this is sensor data
-    pkt->setState(5);
+    pkt->setState(s);
     return pkt;
 }
 
