@@ -1,0 +1,62 @@
+version 2
+run General-0-20150512-20:29:53-8545
+attr configname General
+attr datetime 20150512-20:29:53
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
+attr network Wsn
+attr processid 8545
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+vector 29  Wsn.node[0].queue  "rate of channel"  ETV
+vector 32  Wsn.node[1].queue  "rate of channel"  ETV
+vector 35  Wsn.node[2].queue  "rate of channel"  ETV
+vector 38  Wsn.node[3].queue  "rate of channel"  ETV
+vector 41  Wsn.node[4].queue  "rate of channel"  ETV
+vector 30  Wsn.node[0].control  time  ETV
+vector 31  Wsn.node[0].control  "length of the queue"  ETV
+vector 33  Wsn.node[1].control  time  ETV
+vector 34  Wsn.node[1].control  "length of the queue"  ETV
+vector 36  Wsn.node[2].control  time  ETV
+vector 37  Wsn.node[2].control  "length of the queue"  ETV
+vector 39  Wsn.node[3].control  time  ETV
+vector 40  Wsn.node[3].control  "length of the queue"  ETV
+vector 42  Wsn.node[4].control  time  ETV
+vector 43  Wsn.node[4].control  "length of the queue"  ETV
+29	6	0	1
+29	17	0.592844616388	1
+30	11	0	3.030303030303
+30	18	0.592844616388	3.030303030303
+31	11	0	0
+31	18	0.592844616388	0
+32	7	0	1
+32	23	0.84426574409	1
+33	12	0	3.030303030303
+33	24	0.84426574409	3.030303030303
+34	12	0	0
+34	24	0.84426574409	0
+35	8	0	1
+35	29	0.857945619849	1
+36	13	0	3.030303030303
+36	30	0.857945619849	3.030303030303
+37	13	0	0
+37	30	0.857945619849	0
+38	9	0	1
+38	26	0.847251737257	1
+39	14	0	3.030303030303
+39	27	0.847251737257	3.030303030303
+40	14	0	0
+40	27	0.847251737257	0
+41	10	0	1
+41	20	0.623563696397	1
+42	15	0	3.030303030303
+42	21	0.623563696397	3.030303030303
+43	15	0	0
+43	21	0.623563696397	0

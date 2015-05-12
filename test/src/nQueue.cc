@@ -60,6 +60,7 @@ void nQueue::handleMessage(cMessage *msg)
             char temp[30];
             sprintf(temp,"resend data %lf,seq = %d",ack->getData(),ack->getSeq());
             ack->setName(temp);
+            ack->setState(nack->getStatus());
             ack->setType(1);//the data was missed in the previous transmit.
             send(ack,"control");
 

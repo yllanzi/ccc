@@ -1,0 +1,603 @@
+09:33:56 **** Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+Sink.cc
+Sink.cc: In member function ‘virtual void test::Sink::initialize()’:
+Sink.cc:35:13: warning: unused variable ‘n’ [-Wunused-variable]
+         int n=0;
+             ^
+DelayControl.cc
+Sensor.cc
+nQueue.cc
+SendReceive.cc
+Data_m.cc
+Nack_m.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+09:40:35 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+09:41:02 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+09:52:24 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+09:59:43 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+10:01:37 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+10:04:15 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+10:08:01 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+10:08:24 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+10:10:54 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+10:11:19 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+10:21:07 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+10:27:47 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+10:29:20 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+11:44:17 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+Sink.cc
+Sink.cc: In member function ‘virtual void test::Sink::initialize()’:
+Sink.cc:35:13: warning: unused variable ‘n’ [-Wunused-variable]
+         int n=0;
+             ^
+DelayControl.cc
+nQueue.cc
+Creating executable: ../out/gcc-debug/src/test
+../out/gcc-debug/src/DelayControl.o:(.data.rel.ro._ZTVN4test12DelayControlE[_ZTVN4test12DelayControlE]+0x288)：对‘test::DelayControl::getNexTime(int, int)’未定义的引用
+collect2: error: ld returned 1 exit status
+Makefile:93: recipe for target '../out/gcc-debug/src/test' failed
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+Makefile:2: recipe for target 'all' failed
+make[1]: *** [../out/gcc-debug/src/test] Error 1
+make: *** [all] Error 2
+11:46:45 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+Creating executable: ../out/gcc-debug/src/test
+../out/gcc-debug/src/DelayControl.o:(.data.rel.ro._ZTVN4test12DelayControlE[_ZTVN4test12DelayControlE]+0x288)：对‘test::DelayControl::getNexTime(int, int)’未定义的引用
+collect2: error: ld returned 1 exit status
+Makefile:93: recipe for target '../out/gcc-debug/src/test' failed
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+Makefile:2: recipe for target 'all' failed
+make[1]: *** [../out/gcc-debug/src/test] Error 1
+make: *** [all] Error 2
+11:49:59 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+Creating executable: ../out/gcc-debug/src/test
+../out/gcc-debug/src/DelayControl.o:(.data.rel.ro._ZTVN4test12DelayControlE[_ZTVN4test12DelayControlE]+0x288)：对‘test::DelayControl::getNexTime(int, int)’未定义的引用
+Makefile:93: recipe for target '../out/gcc-debug/src/test' failed
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+Makefile:2: recipe for target 'all' failed
+collect2: error: ld returned 1 exit status
+make[1]: *** [../out/gcc-debug/src/test] Error 1
+make: *** [all] Error 2
+11:50:17 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:35:23: warning: unused variable ‘notice’ [-Wunused-variable]
+             cMessage *notice = new cMessage("notice");
+                       ^
+DelayControl.cc:36:17: warning: unused variable ‘lq’ [-Wunused-variable]
+             int lq = n.length()+d.length();
+                 ^
+Creating executable: ../out/gcc-debug/src/test
+../out/gcc-debug/src/DelayControl.o:(.data.rel.ro._ZTVN4test12DelayControlE[_ZTVN4test12DelayControlE]+0x288)：对‘test::DelayControl::getNexTime(int, int)’未定义的引用
+Makefile:93: recipe for target '../out/gcc-debug/src/test' failed
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+Makefile:2: recipe for target 'all' failed
+collect2: error: ld returned 1 exit status
+make[1]: *** [../out/gcc-debug/src/test] Error 1
+make: *** [all] Error 2
+11:51:02 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:35:23: warning: unused variable ‘notice’ [-Wunused-variable]
+             cMessage *notice = new cMessage("notice");
+                       ^
+DelayControl.cc:36:17: warning: unused variable ‘lq’ [-Wunused-variable]
+             int lq = n.length()+d.length();
+                 ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+11:52:16 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:35:23: warning: unused variable ‘notice’ [-Wunused-variable]
+             cMessage *notice = new cMessage("notice");
+                       ^
+DelayControl.cc:36:17: warning: unused variable ‘lq’ [-Wunused-variable]
+             int lq = n.length()+d.length();
+                 ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+13:04:18 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:37:38: error: invalid conversion from ‘int’ to ‘cMessage*’ [-fpermissive]
+             scheduleAt(lastTime+lq,ln),notice);
+                                      ^
+In file included from /home/candice/omnetpp-4.6/include/omnetpp.h:85:0,
+                 from DelayControl.h:5,
+                 from DelayControl.cc:2:
+/home/candice/omnetpp-4.6/include/csimplemodule.h:362:9: note: initializing argument 2 of ‘int cSimpleModule::scheduleAt(simtime_t, cMessage*)’
+     int scheduleAt(simtime_t t, cMessage *msg);
+         ^
+DelayControl.cc:37:46: error: expected ‘;’ before ‘)’ token
+             scheduleAt(lastTime+lq,ln),notice);
+                                              ^
+DelayControl.cc:37:47: warning: right operand of comma operator has no effect [-Wunused-value]
+             scheduleAt(lastTime+lq,ln),notice);
+                                               ^
+Makefile:102: recipe for target '../out/gcc-debug/src/DelayControl.o' failed
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+make[1]: *** [../out/gcc-debug/src/DelayControl.o] Error 1
+make: *** [all] Error 2
+Makefile:2: recipe for target 'all' failed
+13:04:48 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+13:06:55 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+Creating executable: ../out/gcc-debug/src/test
+../out/gcc-debug/src/DelayControl.o：在函数‘test::DelayControl::handleMessage(cMessage*)’中：
+/home/candice/ccc/test/src/DelayControl.cc:37：对‘test::DelayControl::getNexTime(int, int)’未定义的引用
+Makefile:93: recipe for target '../out/gcc-debug/src/test' failed
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+Makefile:2: recipe for target 'all' failed
+collect2: error: ld returned 1 exit status
+make[1]: *** [../out/gcc-debug/src/test] Error 1
+make: *** [all] Error 2
+13:14:40 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:36:17: warning: unused variable ‘lq’ [-Wunused-variable]
+             int lq = n.length()+d.length();
+                 ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+13:15:38 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:36:17: warning: unused variable ‘lq’ [-Wunused-variable]
+             int lq = n.length()+d.length();
+                 ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+13:21:57 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+13:34:09 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:37:41: error: ‘getNextTime’ was not declared in this scope
+             double t = getNextTime(lq,ln);
+                                         ^
+Makefile:102: recipe for target '../out/gcc-debug/src/DelayControl.o' failed
+make[1]: *** [../out/gcc-debug/src/DelayControl.o] Error 1
+make: *** [all] Error 2
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+Makefile:2: recipe for target 'all' failed
+13:34:35 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+Creating executable: ../out/gcc-debug/src/test
+../out/gcc-debug/src/DelayControl.o：在函数‘test::DelayControl::handleMessage(cMessage*)’中：
+/home/candice/ccc/test/src/DelayControl.cc:37：对‘test::DelayControl::getNexTime(int, int)’未定义的引用
+collect2: error: ld returned 1 exit status
+Makefile:93: recipe for target '../out/gcc-debug/src/test' failed
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+Makefile:2: recipe for target 'all' failed
+make[1]: *** [../out/gcc-debug/src/test] Error 1
+make: *** [all] Error 2
+13:35:09 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:36:17: warning: unused variable ‘lq’ [-Wunused-variable]
+             int lq = n.length()+d.length();
+                 ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+13:37:07 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:36:17: warning: unused variable ‘lq’ [-Wunused-variable]
+             int lq = n.length()+d.length();
+                 ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+13:38:34 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:36:17: warning: unused variable ‘lq’ [-Wunused-variable]
+             int lq = n.length()+d.length();
+                 ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+14:45:05 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+15:07:57 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+15:13:21 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+15:14:15 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+15:14:29 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+15:21:19 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:02:18 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:10:59 **** Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:14:51 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:20:38 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:25:18 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:40:18 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:44:55 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+Sink.cc
+Sink.cc: In member function ‘virtual void test::Sink::initialize()’:
+Sink.cc:35:13: warning: unused variable ‘n’ [-Wunused-variable]
+         int n=0;
+             ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+17:01:03 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+Sink.cc
+Sink.cc: In member function ‘virtual void test::Sink::initialize()’:
+Sink.cc:35:13: warning: unused variable ‘n’ [-Wunused-variable]
+         int n=0;
+             ^
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+17:17:45 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:51:17: error: ‘t’ was not declared in this scope
+                 t = dblrand()*2;
+                 ^
+DelayControl.cc:54:17: error: ‘t’ was not declared in this scope
+                 t = (ln/state)*dblrand()*10;
+                 ^
+DelayControl.cc:55:33: error: ‘t’ was not declared in this scope
+             scheduleAt(lastTime+t,notice);
+                                 ^
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Makefile:102: recipe for target '../out/gcc-debug/src/DelayControl.o' failed
+make[1]: *** [../out/gcc-debug/src/DelayControl.o] Error 1
+make: *** [all] Error 2
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+Makefile:2: recipe for target 'all' failed
+17:18:13 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+17:18:46 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+17:20:54 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+17:25:21 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:51:17: error: ‘t’ was not declared in this scope
+                 t = dblrand()*2;
+                 ^
+DelayControl.cc:54:17: error: ‘t’ was not declared in this scope
+                 t = (ln/state)*dblrand()*10;
+                 ^
+DelayControl.cc:56:33: error: ‘t’ was not declared in this scope
+             scheduleAt(lastTime+t,notice);
+                                 ^
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Makefile:102: recipe for target '../out/gcc-debug/src/DelayControl.o' failed
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+Makefile:2: recipe for target 'all' failed
+make[1]: *** [../out/gcc-debug/src/DelayControl.o] Error 1
+make: *** [all] Error 2
+17:25:44 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+17:26:50 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+17:27:24 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+17:29:19 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+17:29:42 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+17:31:24 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+19:50:29 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+19:54:40 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+19:56:50 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+20:13:25 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:25:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+20:30:18 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+20:30:19 **** Build of configuration gcc-debug for project tictoc ****
+make MODE=debug CONFIGNAME=gcc-debug all 

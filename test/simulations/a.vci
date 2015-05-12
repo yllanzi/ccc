@@ -1,29 +1,48 @@
-file 7125 1431353157                                            
+file 1747 1431433809                                            
 version 2
-run General-0-20150511-22:05:00-4440
+run General-0-20150512-20:29:53-8545
 attr configname General
-attr datetime 20150511-22:05:00
+attr datetime 20150512-20:29:53
 attr experiment General
 attr inifile omnetpp.ini
-attr iterationvars $jobs=1
-attr iterationvars2 "$jobs=1, $repetition=0"
-attr jobs 1
-attr measurement $jobs=1
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
 attr network Wsn
-attr processid 4440
+attr processid 8545
 attr repetition 0
 attr replication #0
 attr resultdir results
 attr runnumber 0
 attr seedset 0
 
-vector 7  Wsn.node[0].queue  "rate of channel"  ETV
-vector 8  Wsn.node[1].queue  "rate of channel"  ETV
-vector 9  Wsn.node[2].queue  "rate of channel"  ETV
-vector 10  Wsn.node[3].queue  "rate of channel"  ETV
-vector 11  Wsn.node[4].queue  "rate of channel"  ETV
-7	677 1455 6 871 0 21.177827551134 50 0.88 1 48.767544502701 47.637374950216
-8	2132 1082 7 838 0 20.607248257598 39 0.91428571428571 1 38.311997108039 37.671389894426
-9	3214 1356 8 864 0 21.037411141317 49 0.91836734693878 1 48.392194194709 47.817527871863
-10	4570 1251 9 854 0 20.944847630085 42 0.925 1 41.19201656768 40.430443447554
-11	5821 1304 10 874 0 21.181895124007 46 0.92857142857143 1 45.478196002834 44.985564639421
+vector 29  Wsn.node[0].queue  "rate of channel"  ETV
+vector 32  Wsn.node[1].queue  "rate of channel"  ETV
+vector 35  Wsn.node[2].queue  "rate of channel"  ETV
+vector 38  Wsn.node[3].queue  "rate of channel"  ETV
+vector 41  Wsn.node[4].queue  "rate of channel"  ETV
+vector 30  Wsn.node[0].control  time  ETV
+vector 31  Wsn.node[0].control  "length of the queue"  ETV
+vector 33  Wsn.node[1].control  time  ETV
+vector 34  Wsn.node[1].control  "length of the queue"  ETV
+vector 36  Wsn.node[2].control  time  ETV
+vector 37  Wsn.node[2].control  "length of the queue"  ETV
+vector 39  Wsn.node[3].control  time  ETV
+vector 40  Wsn.node[3].control  "length of the queue"  ETV
+vector 42  Wsn.node[4].control  time  ETV
+vector 43  Wsn.node[4].control  "length of the queue"  ETV
+29	1129 32 6 17 0 0.592844616388 2 1 1 2 2
+30	1161 59 11 18 0 0.592844616388 2 3.030303030303 3.030303030303 6.0606060606061 18.365472910927
+31	1220 33 11 18 0 0.592844616388 2 0 0 0 0
+32	1253 31 7 23 0 0.84426574409 2 1 1 2 2
+33	1284 58 12 24 0 0.84426574409 2 3.030303030303 3.030303030303 6.0606060606061 18.365472910927
+34	1342 32 12 24 0 0.84426574409 2 0 0 0 0
+35	1374 32 8 29 0 0.857945619849 2 1 1 2 2
+36	1406 59 13 30 0 0.857945619849 2 3.030303030303 3.030303030303 6.0606060606061 18.365472910927
+37	1465 33 13 30 0 0.857945619849 2 0 0 0 0
+38	1498 32 9 26 0 0.847251737257 2 1 1 2 2
+39	1530 59 14 27 0 0.847251737257 2 3.030303030303 3.030303030303 6.0606060606061 18.365472910927
+40	1589 33 14 27 0 0.847251737257 2 0 0 0 0
+41	1622 33 10 20 0 0.623563696397 2 1 1 2 2
+42	1655 59 15 21 0 0.623563696397 2 3.030303030303 3.030303030303 6.0606060606061 18.365472910927
+43	1714 33 15 21 0 0.623563696397 2 0 0 0 0

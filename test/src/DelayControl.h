@@ -12,11 +12,14 @@ private:
     cPacketQueue d;
     cPacketQueue n;
     simtime_t lastTime;
-
+    int ln,lq;
+    int state,hstate; //current state and histroty state
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);
-
+    double getNexTime(int lq,int ln);
+    cOutVector Time;
+    cOutVector qlength;
 };
 
 }; // namespace

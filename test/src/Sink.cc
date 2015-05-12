@@ -81,7 +81,7 @@ Nack *Sink::createNack(){
     }
     EV <<" =================\n";
     pkt->setNum(key);
-    pkt->setStatus(0);
+    pkt->setStatus(1000);
     pkt->setFinalkey(key);
 
 return pkt;

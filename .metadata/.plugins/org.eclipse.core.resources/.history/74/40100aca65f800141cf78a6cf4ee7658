@@ -1,0 +1,53 @@
+
+#include "DelayControl.h"
+#include "comm.h"
+#include <string>
+#include "Data_m.h"
+
+
+using std::string;
+namespace test {
+
+Define_Module(DelayControl);
+
+void DelayControl::initialize()
+{
+lastTime = simTime();
+ln = 0;
+}
+
+void DelayControl::handleMessage(cMessage *msg)
+{
+    if(msg->isSelfMessage()){//send package directly
+        EV<<"SELF MESSAGE\n";
+        if(n.length()!=0)
+        {
+            send(n.pop(),"send");
+        }else
+        send(d.pop(),"send");
+        }
+    else{
+            Data *pk = check_and_cast<Data *>(msg);
+            if(pk->getType()==0){//this is normal data
+                d.insert(pk);
+            }
+            else n.insert(pk);
+            cMessage *notice = new cMessage("notice");
+            int lq = n.length()+d.length();
+            double t = getNexTime(lq,ln);
+            scheduleAt(lastTime+t,notice);
+            lastTime = simTime();
+            EV <<pk->getState()<<"this is status of sensor \n";
+        }
+    EV <<simTime()<<"  CORRECT \n";
+
+
+}
+
+double getNexTime(int lq,int ln){
+
+    return 0.4;
+}
+
+
+}; // namespace
