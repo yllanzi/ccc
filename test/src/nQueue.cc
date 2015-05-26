@@ -47,24 +47,28 @@ void nQueue::handleMessage(cMessage *msg)
          send(pkt->dup(),"control");
          seq++;
     }
-    else{
-        this->getParentModule()->bubble("cqueue receive Nack");
-        wrong++;
-        Nack *nack =  check_and_cast<Nack *>(msg);
-        int num = nack->getNum();
-        int seq;
-        for(int i=0;i<num;i++){
-            seq = nack->getSeq(i);
-            Data *ack =  check_and_cast<Data *>(buf.get(seq)->dup());
+    else{ //receive NACK
+         Nack *nack =  check_and_cast<Nack *>(msg);
+         if(nack->getSource() != getParentModule()->getId()){
+             this->getParentModule()->bubble("cqueue receive Nack");
+             wrong++;
+
+             int num = nack->getNum();
+             int seq;
+             for(int i=0;i<num;i++){
+                 seq = nack->getSeq(i);
+                 Data *ack =  check_and_cast<Data *>(buf.get(seq)->dup());
                                 //  给出头的消息副本next
-            char temp[30];
-            sprintf(temp,"resend data %lf,seq = %d",ack->getData(),ack->getSeq());
-            ack->setName(temp);
-            ack->setState(nack->getStatus());
-            ack->setType(1);//the data was missed in the previous transmit.
-            send(ack,"control");
+                 char temp[30];
+                 sprintf(temp,"resend data %lf,seq = %d",ack->getData(),ack->getSeq());
+                 ack->setName(temp);
+                 ack->setState(nack->getStatus());
+                 ack->setType(1);//the data was missed in the previous transmit.
+                 send(ack,"control");
+        }
 
         }
+         else send(nack,"control"); // if NACK packet is generate from self,send directly.
     }
     double r = (all-wrong)/all;
     rate.record(r);

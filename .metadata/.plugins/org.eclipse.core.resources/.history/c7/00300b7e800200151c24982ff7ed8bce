@@ -1,0 +1,27 @@
+
+#ifndef __TEST_NODE_H
+#define __TEST_NODE_H
+
+#include <omnetpp.h>
+#include "Data_m.h"
+#include <Nack_m.h>
+using std::string;
+namespace test {
+class reTransfer : public cSimpleModule
+{
+
+
+protected:
+    virtual void initialize();
+    virtual void handleMessage(cMessage *msg);
+    Nack *createNack();
+        bool isCheckPoint(int seq, int next,int source);
+        void sendNack(Data *p);
+        cOutVector nack;
+};
+
+}; // namespace
+
+#endif
+
+

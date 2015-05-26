@@ -1,0 +1,78 @@
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program.  If not, see http://www.gnu.org/licenses/.
+// 
+
+#include "reTransfer.h"
+#include "comm.h"
+#include <Data_m.h>
+#include "Nack_m.h"
+#include <string>
+using std::string;
+namespace test {
+
+Define_Module(reTransfer);
+//module nQueue is used to receive the data,generate Message and add it to the queue.
+//if the node is not busy, it will send message to sr to send it.
+void reTransfer::initialize()
+{
+    pkLenBits = &par("pkLenBits");
+            txRate = par("txRate");
+            for(int i=0;i<30;i++) {
+                seq[i]=0;//each node just have one seq[i]
+                checkpt[i]=1;
+            }
+
+            miss = false;
+            key = 0;//mark misnum in one group
+            nack.setName("length of sink");
+            int n=0;
+}
+
+void reTransfer::handleMessage(cMessage *msg)
+{
+    Data *p = check_and_cast<Data *>(msg);
+        EV  << p->getType()<<"\n";
+
+
+    if(p->hasBitError()){
+        delete(msg);
+     //   EV << "CHECK THE MSG ,FOUND ERROR \n";
+    }
+    else if(p->getType() == 0){ //is new data
+        int src = p->getSource();
+        if(isCheckPoint(p->getSeq(),p->getState(),p->getSource())){
+                if(miss){
+                    sendNack(p);
+                    miss =false;
+                    key = 0;
+                }
+            }
+        if(seq[src] != p->getSeq()){
+            //update the check symbol
+            miss = true;
+            misq[key] = seq[src];
+            key++;
+            seq[src] = p->getSeq();
+            seq[src]++;
+            }
+        }
+        else {
+            //is  missing data
+            bubble("receive the missing data");
+            EV << p->getType()<<" receive the missing data\n";
+    }
+
+}
+
+}; // namespace

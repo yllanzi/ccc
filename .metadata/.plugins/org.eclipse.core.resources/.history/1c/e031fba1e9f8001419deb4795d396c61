@@ -1,0 +1,46 @@
+
+package test;
+
+module Sink
+{
+    parameters:
+        bool sendInitialMessage = default(false);
+        @signal[state](type="long");
+        @statistic[radioState](source="state"; title="Radio state"; enum="IDLE=0,TRANSMIT=1"; record=vector);
+        double txRate @unit(bps);         // transmission rate
+        double radioDelay @unit(s);       // propagation delay of radio link
+        volatile int pkLenBits @unit(b);
+
+        volatile double sendInterval @unit(s) = default(exponential(1s));
+        volatile double errorRate;
+
+        @display("i=device/antennatower");
+    gates:
+        input in @directIn;
+    submodules:
+        ret: reTransfer {
+            parameters:
+                @display("p=132,34");
+        }
+        queue: nQueue {
+            parameters:
+                @display("p=60,73");
+        }
+        sr: SendReceive {
+            parameters:
+                txRate = txRate;
+                pkLenBits = pkLenBits;
+                @display("p=205,73");
+                errorRate = errorRate;
+        }
+        control: DelayControl {
+            parameters:
+                @display("p=132,112");
+        }
+    connections:
+        in --> sr.in;
+		sr.queue --> ret.sr;
+        ret.queue --> queue.in;
+        queue.control --> control.receive;
+        control.send --> sr.delay;
+}

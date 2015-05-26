@@ -3,6 +3,7 @@
 #include "comm.h"
 #include <string>
 #include "Data_m.h"
+#include "Nack_m.h"
 
 
 using std::string;
@@ -32,8 +33,8 @@ void DelayControl::handleMessage(cMessage *msg)
         send(d.pop(),"send");
         }
     else{
-            Data *pk = check_and_cast<Data *>(msg);
-            if(pk->getType()==0){//this is normal data
+        Data *pk = check_and_cast<Data *>(msg);
+        if(pk->getType()==0){//this is normal data
                 ln = pk->getState();
                 d.insert(pk);
             }
@@ -47,22 +48,26 @@ void DelayControl::handleMessage(cMessage *msg)
                 state = lq/ln + 0.8*hstate;
             EV << "STATE = "<<state <<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
             double t=2.0;
-            if(state ==ln){
+            if(state == ln){
                 t = dblrand()*2;
             }
             else
                 t = ln/(state+1)*dblrand()*5;
-
-            scheduleAt(lastTime+t,notice);
+            scheduleAt(simTime()+1+t,notice);
             Time.record(t);
             qlength.record(state);
             lastTime = lastTime +t;
        //     EV <<pk->getState()<<"this is status of sensor \n";
-        }
+
+            //Nack p = check_and_cast<Nack *>(msg);
+            EV <<"ahahaaaaahahahaha haroro $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n";
+
+
     EV <<simTime()<<"  CORRECT \n";
 
-
+    }
 }
+
 
 
 

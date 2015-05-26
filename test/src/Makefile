@@ -33,6 +33,7 @@ OBJS = \
     $O/DelayControl.o \
     $O/Sensor.o \
     $O/nQueue.o \
+    $O/reTransfer.o \
     $O/SendReceive.o \
     $O/Data_m.o \
     $O/Nack_m.o
@@ -128,6 +129,7 @@ $O/Data_m.o: Data_m.cc \
 $O/DelayControl.o: DelayControl.cc \
 	Data_m.h \
 	DelayControl.h \
+	Nack_m.h \
 	comm.h
 $O/Nack_m.o: Nack_m.cc \
 	Nack_m.h
@@ -149,4 +151,9 @@ $O/nQueue.o: nQueue.cc \
 	Nack_m.h \
 	comm.h \
 	nQueue.h
+$O/reTransfer.o: reTransfer.cc \
+	Data_m.h \
+	Nack_m.h \
+	comm.h \
+	reTransfer.h
 
