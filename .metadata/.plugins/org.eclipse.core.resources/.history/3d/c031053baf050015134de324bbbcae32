@@ -126,12 +126,12 @@ void reTransfer::sendNack(Data *p){
 
     //set destination
     char dest[10];//请确认sr中是否有定位目的接点的职责
- //   sprintf(dest,"node[%d]",p->getSource());
+    sprintf(dest,"node[%d]",p->getSource());
 //    node = simulation.getModuleByPath(dest);
 ///   if (!node) error("node not found");
 
     //create the packet
-    Nack *pk = createNack(p->getSource());//==================simulation.getModuleByPath(dest)->getId()==
+    Nack *pk = createNack(p->getSource());//===simulation.getModuleByPath(dest)->getId()=================
     send(pk,"queue");
     EV <<"NACK PACKET GENERATED\n";
     //send to next level

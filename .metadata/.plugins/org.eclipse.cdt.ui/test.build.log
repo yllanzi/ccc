@@ -1,8 +1,19 @@
-10:17:53 **** Incremental Build of configuration gcc-debug for project test ****
+11:19:05 **** Incremental Build of configuration gcc-debug for project test ****
 make MODE=debug CONFIGNAME=gcc-debug all 
 cd src && make
 make[1]: Entering directory '/home/candice/ccc/test/src'
+nQueue.cc
+reTransfer.cc
+reTransfer.cc: In member function ‘virtual void test::reTransfer::initialize()’:
+reTransfer.cc:36:12: warning: unused variable ‘n’ [-Wunused-variable]
+        int n=0;
+            ^
+reTransfer.cc: In member function ‘void test::reTransfer::sendNack(Data*)’:
+reTransfer.cc:128:10: warning: unused variable ‘dest’ [-Wunused-variable]
+     char dest[10];//请确认sr中是否有定位目的接点的职责
+          ^
+Creating executable: ../out/gcc-debug/src/test
 make[1]: Leaving directory '/home/candice/ccc/test/src'
 
-10:17:55 Build Finished (took 2s.218ms)
+11:19:09 Build Finished (took 3s.461ms)
 

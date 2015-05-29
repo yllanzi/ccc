@@ -80,7 +80,7 @@ Data *nQueue::createPkt(double data){
     char temp[20];
     sprintf(temp," node[%d] send %lf",getParentModule()->getIndex(),data);
     Data *pkt  = new Data(temp);
-    pkt->setSource(getParentModule()->getId());
+    pkt->setSource(getParentModule()->getIndex());
     pkt->setDest(dest);
     pkt->setSeq(seq);
     pkt->setData(data);
