@@ -12,7 +12,8 @@ module Node
         volatile double sendInterval @unit(s) = default(exponential(1s));
         volatile double errorRate;
         @display("i=device/antennatower_s");
-
+        string dest;
+ 
     gates:
         input in @directIn;
     submodules:

@@ -25,6 +25,7 @@
  *     int seq[20];
  *     int finalkey;
  *     int source;
+ *     int dest;
  * }
  * </pre>
  */
@@ -36,6 +37,7 @@ class Nack : public ::cPacket
     int seq_var[20];
     int finalkey_var;
     int source_var;
+    int dest_var;
 
   private:
     void copy(const Nack& other);
@@ -65,6 +67,8 @@ class Nack : public ::cPacket
     virtual void setFinalkey(int finalkey);
     virtual int getSource() const;
     virtual void setSource(int source);
+    virtual int getDest() const;
+    virtual void setDest(int dest);
 };
 
 inline void doPacking(cCommBuffer *b, Nack& obj) {obj.parsimPack(b);}

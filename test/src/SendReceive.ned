@@ -21,6 +21,7 @@ simple SendReceive
         volatile int pkLenBits @unit(b);
         @display("i=block/process");
         double errorRate;
+        string nexthop;
     gates:
       input in @directIn;
       output queue;

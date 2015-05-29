@@ -58,6 +58,7 @@ Register_Class(Data);
 Data::Data(const char *name, int kind) : ::cPacket(name,kind)
 {
     this->source_var = 0;
+    this->dest_var = 0;
     this->seq_var = 0;
     this->data_var = 0;
     this->state_var = 0;
@@ -84,6 +85,7 @@ Data& Data::operator=(const Data& other)
 void Data::copy(const Data& other)
 {
     this->source_var = other.source_var;
+    this->dest_var = other.dest_var;
     this->seq_var = other.seq_var;
     this->data_var = other.data_var;
     this->state_var = other.state_var;
@@ -94,6 +96,7 @@ void Data::parsimPack(cCommBuffer *b)
 {
     ::cPacket::parsimPack(b);
     doPacking(b,this->source_var);
+    doPacking(b,this->dest_var);
     doPacking(b,this->seq_var);
     doPacking(b,this->data_var);
     doPacking(b,this->state_var);
@@ -104,6 +107,7 @@ void Data::parsimUnpack(cCommBuffer *b)
 {
     ::cPacket::parsimUnpack(b);
     doUnpacking(b,this->source_var);
+    doUnpacking(b,this->dest_var);
     doUnpacking(b,this->seq_var);
     doUnpacking(b,this->data_var);
     doUnpacking(b,this->state_var);
@@ -118,6 +122,16 @@ int Data::getSource() const
 void Data::setSource(int source)
 {
     this->source_var = source;
+}
+
+int Data::getDest() const
+{
+    return dest_var;
+}
+
+void Data::setDest(int dest)
+{
+    this->dest_var = dest;
 }
 
 int Data::getSeq() const
@@ -207,7 +221,7 @@ const char *DataDescriptor::getProperty(const char *propertyname) const
 int DataDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 5+basedesc->getFieldCount(object) : 5;
+    return basedesc ? 6+basedesc->getFieldCount(object) : 6;
 }
 
 unsigned int DataDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -224,8 +238,9 @@ unsigned int DataDescriptor::getFieldTypeFlags(void *object, int field) const
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<5) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<6) ? fieldTypeFlags[field] : 0;
 }
 
 const char *DataDescriptor::getFieldName(void *object, int field) const
@@ -238,12 +253,13 @@ const char *DataDescriptor::getFieldName(void *object, int field) const
     }
     static const char *fieldNames[] = {
         "source",
+        "dest",
         "seq",
         "data",
         "state",
         "type",
     };
-    return (field>=0 && field<5) ? fieldNames[field] : NULL;
+    return (field>=0 && field<6) ? fieldNames[field] : NULL;
 }
 
 int DataDescriptor::findField(void *object, const char *fieldName) const
@@ -251,10 +267,11 @@ int DataDescriptor::findField(void *object, const char *fieldName) const
     cClassDescriptor *basedesc = getBaseClassDescriptor();
     int base = basedesc ? basedesc->getFieldCount(object) : 0;
     if (fieldName[0]=='s' && strcmp(fieldName, "source")==0) return base+0;
-    if (fieldName[0]=='s' && strcmp(fieldName, "seq")==0) return base+1;
-    if (fieldName[0]=='d' && strcmp(fieldName, "data")==0) return base+2;
-    if (fieldName[0]=='s' && strcmp(fieldName, "state")==0) return base+3;
-    if (fieldName[0]=='t' && strcmp(fieldName, "type")==0) return base+4;
+    if (fieldName[0]=='d' && strcmp(fieldName, "dest")==0) return base+1;
+    if (fieldName[0]=='s' && strcmp(fieldName, "seq")==0) return base+2;
+    if (fieldName[0]=='d' && strcmp(fieldName, "data")==0) return base+3;
+    if (fieldName[0]=='s' && strcmp(fieldName, "state")==0) return base+4;
+    if (fieldName[0]=='t' && strcmp(fieldName, "type")==0) return base+5;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -269,11 +286,12 @@ const char *DataDescriptor::getFieldTypeString(void *object, int field) const
     static const char *fieldTypeStrings[] = {
         "int",
         "int",
+        "int",
         "double",
         "int",
         "int",
     };
-    return (field>=0 && field<5) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<6) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *DataDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -314,10 +332,11 @@ std::string DataDescriptor::getFieldAsString(void *object, int field, int i) con
     Data *pp = (Data *)object; (void)pp;
     switch (field) {
         case 0: return long2string(pp->getSource());
-        case 1: return long2string(pp->getSeq());
-        case 2: return double2string(pp->getData());
-        case 3: return long2string(pp->getState());
-        case 4: return long2string(pp->getType());
+        case 1: return long2string(pp->getDest());
+        case 2: return long2string(pp->getSeq());
+        case 3: return double2string(pp->getData());
+        case 4: return long2string(pp->getState());
+        case 5: return long2string(pp->getType());
         default: return "";
     }
 }
@@ -333,10 +352,11 @@ bool DataDescriptor::setFieldAsString(void *object, int field, int i, const char
     Data *pp = (Data *)object; (void)pp;
     switch (field) {
         case 0: pp->setSource(string2long(value)); return true;
-        case 1: pp->setSeq(string2long(value)); return true;
-        case 2: pp->setData(string2double(value)); return true;
-        case 3: pp->setState(string2long(value)); return true;
-        case 4: pp->setType(string2long(value)); return true;
+        case 1: pp->setDest(string2long(value)); return true;
+        case 2: pp->setSeq(string2long(value)); return true;
+        case 3: pp->setData(string2double(value)); return true;
+        case 4: pp->setState(string2long(value)); return true;
+        case 5: pp->setType(string2long(value)); return true;
         default: return false;
     }
 }

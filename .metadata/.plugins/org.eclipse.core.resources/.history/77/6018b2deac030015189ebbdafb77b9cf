@@ -1,0 +1,20 @@
+[General]
+network = Wsn
+cpu-time-limit = 160s
+#debug-on-errors = true
+output-scalar-file = a.sca
+output-vector-file = a.vec
+
+Wsn.**.txRate = 9.6kbps
+Wsn.**.radioDelay = 10ms
+Wsn.txRate = 9.6kbps
+Wsn.sink.pkLenBits = 999b
+Wsn.**.pkLenBits = 999b
+Wsn.num = 1
+Wsn.errorRate =0.7
+Wsn.**.num = 1
+Wsn.**.dest = "sink"
+Wsn.**.errorRate = 0.5
+Wsn.transfer.sr.nexthop = "sink"
+Wsn.sink.sr.nexthop = "sink"
+Wsn.node[*].sr.nexthop= "sink"

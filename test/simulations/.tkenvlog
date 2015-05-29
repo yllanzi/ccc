@@ -145,3 +145,17 @@ Tcl error: moduleinspector.cc#602: ptr0x22e2a70 not found
 "ModuleInspector:drawMessageOnModule .inspector0.c ptr0x22e2a70 ptr0x24022b0"
 
 
+----------------------------------------------------------------------
+
+
+Tcl error: moduleinspector.cc#631: ptr0x2ae6530 not found
+    while executing
+"error "$tag not found""
+    (procedure "ModuleInspector:getSubmodCoords" line 4)
+    invoked from within
+"ModuleInspector:getSubmodCoords $c $modptr"
+    (procedure "ModuleInspector:drawNextEventMarker" line 2)
+    invoked from within
+"ModuleInspector:drawNextEventMarker .inspector0.c ptr0x2ae6530 1"
+
+

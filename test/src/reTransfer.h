@@ -17,10 +17,11 @@ private:
         int key;
         int seq[30];
 
+
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);
-    Nack *createNack();
+    Nack *createNack(int source);
         bool isCheckPoint(int seq, int next,int source);
         void sendNack(Data *p);
         cOutVector nack;

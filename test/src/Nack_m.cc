@@ -63,6 +63,7 @@ Nack::Nack(const char *name, int kind) : ::cPacket(name,kind)
         this->seq_var[i] = 0;
     this->finalkey_var = 0;
     this->source_var = 0;
+    this->dest_var = 0;
 }
 
 Nack::Nack(const Nack& other) : ::cPacket(other)
@@ -90,6 +91,7 @@ void Nack::copy(const Nack& other)
         this->seq_var[i] = other.seq_var[i];
     this->finalkey_var = other.finalkey_var;
     this->source_var = other.source_var;
+    this->dest_var = other.dest_var;
 }
 
 void Nack::parsimPack(cCommBuffer *b)
@@ -100,6 +102,7 @@ void Nack::parsimPack(cCommBuffer *b)
     doPacking(b,this->seq_var,20);
     doPacking(b,this->finalkey_var);
     doPacking(b,this->source_var);
+    doPacking(b,this->dest_var);
 }
 
 void Nack::parsimUnpack(cCommBuffer *b)
@@ -110,6 +113,7 @@ void Nack::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->seq_var,20);
     doUnpacking(b,this->finalkey_var);
     doUnpacking(b,this->source_var);
+    doUnpacking(b,this->dest_var);
 }
 
 int Nack::getStatus() const
@@ -169,6 +173,16 @@ void Nack::setSource(int source)
     this->source_var = source;
 }
 
+int Nack::getDest() const
+{
+    return dest_var;
+}
+
+void Nack::setDest(int dest)
+{
+    this->dest_var = dest;
+}
+
 class NackDescriptor : public cClassDescriptor
 {
   public:
@@ -216,7 +230,7 @@ const char *NackDescriptor::getProperty(const char *propertyname) const
 int NackDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 5+basedesc->getFieldCount(object) : 5;
+    return basedesc ? 6+basedesc->getFieldCount(object) : 6;
 }
 
 unsigned int NackDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -233,8 +247,9 @@ unsigned int NackDescriptor::getFieldTypeFlags(void *object, int field) const
         FD_ISARRAY | FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<5) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<6) ? fieldTypeFlags[field] : 0;
 }
 
 const char *NackDescriptor::getFieldName(void *object, int field) const
@@ -251,8 +266,9 @@ const char *NackDescriptor::getFieldName(void *object, int field) const
         "seq",
         "finalkey",
         "source",
+        "dest",
     };
-    return (field>=0 && field<5) ? fieldNames[field] : NULL;
+    return (field>=0 && field<6) ? fieldNames[field] : NULL;
 }
 
 int NackDescriptor::findField(void *object, const char *fieldName) const
@@ -264,6 +280,7 @@ int NackDescriptor::findField(void *object, const char *fieldName) const
     if (fieldName[0]=='s' && strcmp(fieldName, "seq")==0) return base+2;
     if (fieldName[0]=='f' && strcmp(fieldName, "finalkey")==0) return base+3;
     if (fieldName[0]=='s' && strcmp(fieldName, "source")==0) return base+4;
+    if (fieldName[0]=='d' && strcmp(fieldName, "dest")==0) return base+5;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -281,8 +298,9 @@ const char *NackDescriptor::getFieldTypeString(void *object, int field) const
         "int",
         "int",
         "int",
+        "int",
     };
-    return (field>=0 && field<5) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<6) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *NackDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -328,6 +346,7 @@ std::string NackDescriptor::getFieldAsString(void *object, int field, int i) con
         case 2: return long2string(pp->getSeq(i));
         case 3: return long2string(pp->getFinalkey());
         case 4: return long2string(pp->getSource());
+        case 5: return long2string(pp->getDest());
         default: return "";
     }
 }
@@ -347,6 +366,7 @@ bool NackDescriptor::setFieldAsString(void *object, int field, int i, const char
         case 2: pp->setSeq(i,string2long(value)); return true;
         case 3: pp->setFinalkey(string2long(value)); return true;
         case 4: pp->setSource(string2long(value)); return true;
+        case 5: pp->setDest(string2long(value)); return true;
         default: return false;
     }
 }

@@ -17,6 +17,7 @@ private:
     double wrong;
     double all;
     int s;
+    int dest;
 
 protected:
     virtual void initialize();

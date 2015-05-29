@@ -31,6 +31,7 @@ void nQueue::initialize()
     qlength = queue.length();
     rate.setName("rate of channel");
     s = par("num");
+    dest = getModuleByPath(par("dest"))->getId();
 
 }
 
@@ -68,7 +69,8 @@ void nQueue::handleMessage(cMessage *msg)
         }
 
         }
-         else send(nack,"control"); // if NACK packet is generate from self,send directly.
+
+         else {send(nack,"control"); EV <<"SELF NACK SEND TO CONTROL\n";}// if NACK packet is generate from self,send directly.
     }
     double r = (all-wrong)/all;
     rate.record(r);
@@ -79,6 +81,7 @@ Data *nQueue::createPkt(double data){
     sprintf(temp," node[%d] send %lf",getParentModule()->getIndex(),data);
     Data *pkt  = new Data(temp);
     pkt->setSource(getParentModule()->getIndex());
+    pkt->setDest(dest);
     pkt->setSeq(seq);
     pkt->setData(data);
     pkt->setType(0);//zero means this is sensor data

@@ -18,6 +18,7 @@ private:
     cModule *destination;
     simtime_t radioDelay;
     double errorRate;
+    int nexthop;
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);

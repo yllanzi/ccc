@@ -38,19 +38,21 @@ void reTransfer::initialize()
 
 void reTransfer::handleMessage(cMessage *msg)
 {
-
+try{
     Data *p = check_and_cast<Data *>(msg);
         EV  << p->getType()<<"\n";
 
     if(p->hasBitError()){
         delete(msg);//MESSAGE WITH ERROR
-     //   EV << "CHECK THE MSG ,FOUND ERROR \n";
     }
+
     //MESSAGE WITHOUT ERROR
-    else if(p->getType() == 0){ //is new data
+    else if(p->getType() >= 0){ //is new data
         int src = p->getSource();
         char temp[20]="";
         sprintf(temp,"%f",p->getData());
+        EV <<"SLEEP IN RETRANSFER\n";
+//    sleep(2);
         cMessage *data = new cMessage(temp);
         send(data,"data");//send data to queue to generate a  new package;
                             //TO FORWARD THE PACKAGE
@@ -72,24 +74,33 @@ void reTransfer::handleMessage(cMessage *msg)
             seq[src] = p->getSeq();
             seq[src]++;
             }
+
         }
-        else {
+
+ /**   else {
             //is  missing data
             bubble("receive the missing data");
             EV << p->getType()<<" receive the missing data\n";
-    }
+    }*/
+}
+catch(...){
+        send(msg->dup(),"queue");
+
+}
+
+
   //  send(p->dup(),"")
 }
-Nack *reTransfer::createNack(){
+Nack *reTransfer::createNack(int source){
     char temp[20];
     sprintf(temp,"Nack %d",seq[0]);
     Nack *pkt = new Nack(temp);
     for(int i=0;i<key;i++){
        pkt->setSeq(i,misq[i]);
-       EV << misq[i] <<" ";
+       EV << misq[i] <<"  ->";
     }
-    EV <<" =================\n";
-
+    EV <<source<<" =================\n";
+    pkt->setDest(source);
     pkt->setSource(getParentModule()->getId());
     pkt->setNum(key);
     pkt->setStatus(1000);
@@ -120,7 +131,7 @@ void reTransfer::sendNack(Data *p){
 ///   if (!node) error("node not found");
 
     //create the packet
-    Nack *pk = createNack();//====================
+    Nack *pk = createNack(simulation.getModuleByPath(dest)->getId());//====================
     send(pk,"queue");
     EV <<"NACK PACKET GENERATED\n";
     //send to next level

@@ -21,6 +21,7 @@
  * packet Data
  * {
  *     int source;
+ *     int dest;
  *     int seq;
  *     double data;
  *     int state;
@@ -32,6 +33,7 @@ class Data : public ::cPacket
 {
   protected:
     int source_var;
+    int dest_var;
     int seq_var;
     double data_var;
     int state_var;
@@ -56,6 +58,8 @@ class Data : public ::cPacket
     // field getter/setter methods
     virtual int getSource() const;
     virtual void setSource(int source);
+    virtual int getDest() const;
+    virtual void setDest(int dest);
     virtual int getSeq() const;
     virtual void setSeq(int seq);
     virtual double getData() const;
