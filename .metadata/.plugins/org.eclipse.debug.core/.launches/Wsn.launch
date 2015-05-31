@@ -20,7 +20,7 @@
 <stringAttribute key="org.omnetpp.launch.INI_FILES" value="omnetpp.ini"/>
 <stringAttribute key="org.omnetpp.launch.NED_PATH" value="${opp_ned_path:/test/simulations}"/>
 <intAttribute key="org.omnetpp.launch.NUM_CONCURRENT_PROCESSES" value="1"/>
-<stringAttribute key="org.omnetpp.launch.RECORD_EVENTLOG" value=""/>
+<stringAttribute key="org.omnetpp.launch.RECORD_EVENTLOG" value="true"/>
 <stringAttribute key="org.omnetpp.launch.RUN" value=""/>
 <stringAttribute key="org.omnetpp.launch.SHARED_LIBS" value="${opp_shared_libs:/test/simulations}"/>
 <booleanAttribute key="org.omnetpp.launch.SHOW_DEBUG_VIEW" value="false"/>

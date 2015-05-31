@@ -1,8 +1,8 @@
-16:08:30 **** Incremental Build of configuration gcc-debug for project test ****
+01:57:56 **** Incremental Build of configuration gcc-debug for project test ****
 make MODE=debug CONFIGNAME=gcc-debug all 
 cd src && make
 make[1]: Entering directory '/home/candice/ccc/test/src'
 make[1]: Leaving directory '/home/candice/ccc/test/src'
 
-16:08:30 Build Finished (took 189ms)
+01:57:56 Build Finished (took 262ms)
 

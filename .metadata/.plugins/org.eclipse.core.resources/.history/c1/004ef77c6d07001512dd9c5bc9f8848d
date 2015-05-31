@@ -55,19 +55,17 @@ void nQueue::handleMessage(cMessage *msg)
              wrong++;
              int num = nack->getNum();
              int seq;
-             for(int i=0;i<num;i++){
+             for(int i=1;i<num;i++){
                  seq = nack->getSeq(i);
-                 EV <<seq <<"will get from buf buf length is"<<buf.size()<<"\n";
-                 if(seq <buf.size()){
-            Data *ack =  check_and_cast<Data *>(buf.get(seq)->dup());
+                 EV <<seq <<"will get from buf buf length is"<<buf.getLiveObjectCount()<<"\n";
+              Data *ack =  check_and_cast<Data *>(buf.get(seq)->dup());
                                 //  给出头的消息副本next
-                    char temp[30];
+           /**         char temp[30];
                sprintf(temp,"resend data %lf,seq = %d",ack->getData(),ack->getSeq());
                  ack->setName(temp);
                  ack->setState(nack->getStatus());
                  ack->setType(1);//the data was missed in the previous transmit.
-                 send(ack,"control");
-             }
+                 send(ack,"control");*/
              }
 
         }

@@ -3434,3 +3434,100 @@ make MODE=debug CONFIGNAME=gcc-debug all
 cd src && make
 make[1]: Entering directory '/home/candice/ccc/test/src'
 make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:16:54 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+nQueue.cc
+nQueue.cc: In member function ‘virtual void test::nQueue::handleMessage(cMessage*)’:
+nQueue.cc:61:21: warning: unused variable ‘ack’ [-Wunused-variable]
+               Data *ack =  check_and_cast<Data *>(buf.get(seq)->dup());
+                     ^
+SendReceive.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:30:47 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+nQueue.cc
+nQueue.cc: In member function ‘virtual void test::nQueue::handleMessage(cMessage*)’:
+nQueue.cc:61:21: warning: unused variable ‘ack’ [-Wunused-variable]
+               Data *ack =  check_and_cast<Data *>(buf.get(seq));
+                     ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:31:15 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+nQueue.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:54:18 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+nQueue.cc
+Makefile:103: recipe for target '../out/gcc-debug/src/nQueue.o' failed
+make[1]: *** [../out/gcc-debug/src/nQueue.o] 已终止
+make: *** wait: 没有子进程。 停止。
+make: *** 正在等待未完成的任务....
+make: *** wait: 没有子进程。 停止。
+Command canceled
+16:54:28 **** Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+nQueue.cc
+nQueue.cc: In member function ‘virtual void test::nQueue::handleMessage(cMessage*)’:
+nQueue.cc:69:39: error: expected primary-expression before ‘/’ token
+                  send(ack,"control");*/
+                                       ^
+nQueue.cc:70:14: error: expected primary-expression before ‘}’ token
+              }
+              ^
+Makefile:103: recipe for target '../out/gcc-debug/src/nQueue.o' failed
+make[1]: *** [../out/gcc-debug/src/nQueue.o] Error 1
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+Makefile:2: recipe for target 'all' failed
+make: *** [all] Error 2
+16:55:06 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+nQueue.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+16:56:11 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+nQueue.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+17:35:39 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+00:53:01 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+00:53:10 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+01:13:42 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+01:57:56 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+make[1]: Leaving directory '/home/candice/ccc/test/src'
