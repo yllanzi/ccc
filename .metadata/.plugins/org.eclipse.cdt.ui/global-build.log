@@ -3531,3 +3531,66 @@ make MODE=debug CONFIGNAME=gcc-debug all
 cd src && make
 make[1]: Entering directory '/home/candice/ccc/test/src'
 make[1]: Leaving directory '/home/candice/ccc/test/src'
+04:47:59 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+Sink.cc
+Sink.cc: In member function ‘virtual void test::Sink::initialize()’:
+Sink.cc:35:13: warning: unused variable ‘n’ [-Wunused-variable]
+         int n=0;
+             ^
+DelayControl.cc
+DelayControl.cc: In member function ‘virtual void test::DelayControl::handleMessage(cMessage*)’:
+DelayControl.cc:27:9: warning: unused variable ‘flag’ [-Wunused-variable]
+     int flag=0;
+         ^
+DelayControl.cc:28:9: warning: unused variable ‘nstate’ [-Wunused-variable]
+     int nstate=0;
+         ^
+Sensor.cc
+nQueue.cc
+reTransfer.cc
+reTransfer.cc: In member function ‘virtual void test::reTransfer::initialize()’:
+reTransfer.cc:36:12: warning: unused variable ‘n’ [-Wunused-variable]
+        int n=0;
+            ^
+reTransfer.cc: In member function ‘void test::reTransfer::sendNack(Data*)’:
+reTransfer.cc:124:10: warning: unused variable ‘dest’ [-Wunused-variable]
+     char dest[10];//璇风‘璁r涓槸鍚︽湁瀹氫綅鐩殑鎺ョ偣鐨勮亴璐�
+          ^
+SendReceive.cc
+Data_m.cc
+Nack_m.cc
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+05:00:40 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+reTransfer.cc
+reTransfer.cc: In member function ‘virtual void test::reTransfer::initialize()’:
+reTransfer.cc:36:12: warning: unused variable ‘n’ [-Wunused-variable]
+        int n=0;
+            ^
+reTransfer.cc: In member function ‘void test::reTransfer::sendNack(Data*)’:
+reTransfer.cc:124:10: warning: unused variable ‘dest’ [-Wunused-variable]
+     char dest[10];//璇风‘璁r涓槸鍚︽湁瀹氫綅鐩殑鎺ョ偣鐨勮亴璐�
+          ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'
+05:02:41 **** Incremental Build of configuration gcc-debug for project test ****
+make MODE=debug CONFIGNAME=gcc-debug all 
+cd src && make
+make[1]: Entering directory '/home/candice/ccc/test/src'
+reTransfer.cc
+reTransfer.cc: In member function ‘virtual void test::reTransfer::initialize()’:
+reTransfer.cc:36:12: warning: unused variable ‘n’ [-Wunused-variable]
+        int n=0;
+            ^
+reTransfer.cc: In member function ‘void test::reTransfer::sendNack(Data*)’:
+reTransfer.cc:124:10: warning: unused variable ‘dest’ [-Wunused-variable]
+     char dest[10];//璇风‘璁r涓槸鍚︽湁瀹氫綅鐩殑鎺ョ偣鐨勮亴璐�
+          ^
+Creating executable: ../out/gcc-debug/src/test
+make[1]: Leaving directory '/home/candice/ccc/test/src'

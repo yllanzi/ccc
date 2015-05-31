@@ -32,7 +32,7 @@ void reTransfer::initialize()
       }
       miss = false;
      key = 0;//mark misnum in one group
-     nack.setName("length of sink");
+     nack.setName("num");
        int n=0;
 }
 
@@ -101,7 +101,7 @@ Nack *reTransfer::createNack(int source){
     pkt->setNum(key);
     pkt->setStatus(1);
     pkt->setFinalkey(key);
-
+    nack.record(key);
 
 return pkt;
 }
