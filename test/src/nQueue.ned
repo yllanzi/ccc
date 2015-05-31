@@ -24,7 +24,7 @@ simple nQueue
     parameters:
         @display("i=block/queue");
         int num;
-        string dest;
+        
     gates:
         input in;
         input sr;

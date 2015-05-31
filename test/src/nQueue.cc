@@ -31,7 +31,7 @@ void nQueue::initialize()
     qlength = queue.length();
     rate.setName("rate of channel");
     s = par("num");
-    dest = getModuleByPath(par("dest"))->getId();
+    dest = getModuleByPath("Gateway")->getId();
 
 }
 
@@ -53,20 +53,20 @@ void nQueue::handleMessage(cMessage *msg)
          if(nack->getSource() != getParentModule()->getId()){
              this->getParentModule()->bubble("cqueue receive Nack");
              wrong++;
-
              int num = nack->getNum();
              int seq;
              for(int i=0;i<num;i++){
                  seq = nack->getSeq(i);
-                 Data *ack =  check_and_cast<Data *>(buf.get(seq)->dup());
+                 EV <<seq <<"will get from buf buf length is"<<buf.getLiveObjectCount()<<"\n";
+              Data *ack =  check_and_cast<Data *>(buf.get(seq)->dup());
                                 //  给出头的消息副本next
-                 char temp[30];
-                 sprintf(temp,"resend data %lf,seq = %d",ack->getData(),ack->getSeq());
+           /**         char temp[30];
+               sprintf(temp,"resend data %lf,seq = %d",ack->getData(),ack->getSeq());
                  ack->setName(temp);
                  ack->setState(nack->getStatus());
                  ack->setType(1);//the data was missed in the previous transmit.
-                 send(ack,"control");
-        }
+                 send(ack,"control");*/
+             }
 
         }
 
@@ -78,14 +78,16 @@ void nQueue::handleMessage(cMessage *msg)
 }
 Data *nQueue::createPkt(double data){
     char temp[20];
-    sprintf(temp," node[%d] send %lf",getParentModule()->getIndex(),data);
+
+    sprintf(temp," %s send %lf",getParentModule()->getName(),data);
     Data *pkt  = new Data(temp);
     pkt->setSource(getParentModule()->getId());
     pkt->setDest(dest);
     pkt->setSeq(seq);
     pkt->setData(data);
     pkt->setType(0);//zero means this is sensor data
-    pkt->setState(s);
+    pkt->setState(5);
+
     return pkt;
 }
 

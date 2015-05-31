@@ -37,8 +37,8 @@ void SendReceive::handleMessage(cMessage *msg)
      //   Nack *pk = check_and_cast<Nack *>(msg);
 
         send(msg->dup(),"queue");
-        EV <<"HAS BEEN SENT TO QUEUE\n";
-        sleep(3);
+        EV <<"SUCCESS SEND TO QUTUE";
+
     }
     else { //send directly to the sink===========gate("In")=========
 
@@ -57,14 +57,7 @@ void SendReceive::handleMessage(cMessage *msg)
                destination = simulation.getModule(pk->getDest());
                simtime_t duration =pkLenBits->longValue()/txRate;
                sendDirect(pk, radioDelay, duration,destination->gate("in"));
-
            }
-
-/** only for test
-           if(pk->hasBitError()) {
-               EV<<"HAS BIT ERROR";
-               EV << "NODE[" << pk->getSource() <<"] seq = "<< pk->getSeq()<< "\n";
-           }*/
 
 }
    //

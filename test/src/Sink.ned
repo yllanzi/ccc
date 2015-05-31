@@ -12,7 +12,7 @@ module Sink
         volatile int pkLenBits @unit(b);
 		volatile double sendInterval @unit(s) = default(exponential(1s));
         volatile double errorRate;
-        string dest;
+        
 
         @display("i=device/antennatower");
     gates:
@@ -25,7 +25,7 @@ module Sink
         queue: nQueue {
             parameters:
                 @display("p=60,73");
-                dest = dest;
+                
         }
         sr: SendReceive {
             parameters:

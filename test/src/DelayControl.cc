@@ -13,12 +13,12 @@ Define_Module(DelayControl);
 
 void DelayControl::initialize()
 {
-lastTime = simTime();
-ln = 1;
-lq = 0;
-state = hstate = 0;
-Time.setName("time");
-qlength.setName("length of the queue");
+    lastTime = simTime();
+    ln = 1;
+    lq = 0;
+    state = hstate = 0;
+    Time.setName("time");
+    qlength.setName("length of the queue");
 
 }
 
@@ -48,39 +48,27 @@ void DelayControl::handleMessage(cMessage *msg)
             state = 1;
         }
         else
-            state = lq/ln + 0.8*hstate;
+            state = 1;
+            //state = lq/ln + 0.8*hstate;
 
-        EV << "STATE = "<<state <<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
         double t=2.0;
-        if(state == ln){
-            t = dblrand()*2;
+        if(state == 1){
+            t = 0.001;//dblrand()/10;
         }
         else
-            t = ln/(state+1)*dblrand()*5;
+            t = 0.005;///ln/((state+1)*dblrand()*5);
         //schedule the task
-        scheduleAt(simTime()+1+t,notice);
+        scheduleAt(simTime()+0.1,notice);
         Time.record(t);
         qlength.record(state);
         lastTime = lastTime +t;
-       //     EV <<pk->getState()<<"this is status of sensor \n";
-
-            //Nack p = check_and_cast<Nack *>(msg);
-         EV <<"ahahaaaaahahahaha haroro $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n";
-
-
-        }
+     }
         catch(...)//Nack which will be send to source (as a sink)
         {
            Nack *pk = check_and_cast<Nack *>(msg);
-            EV <<"CRASH HERE?\n";
-
-            send(pk,"send");
-
+           pk->setStatus(state);
+           send(pk,"send");
         }
-
-
-
-
     }
 }
 

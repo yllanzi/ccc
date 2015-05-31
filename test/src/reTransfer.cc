@@ -47,24 +47,21 @@ try{
     }
 
     //MESSAGE WITHOUT ERROR
-    else if(p->getType() >= 0){ //is new data
-        int src = p->getSource();
+    else if(p->getDest()!= getParentModule()->getId()){  //the sink is not gateway
+        if(p->getType() >= 0){ //
+         int src = p->getSource();
         char temp[20]="";
         sprintf(temp,"%f",p->getData());
-        EV <<"SLEEP IN RETRANSFER\n";
-//    sleep(2);
         cMessage *data = new cMessage(temp);
         send(data,"data");//send data to queue to generate a  new package;
                             //TO FORWARD THE PACKAGE
 
         if(isCheckPoint(p->getSeq(),p->getState(),p->getSource())){
-            EV <<"CHECKING POINT***************************************************\n";
             if(miss){
-                EV <<"CHECKING POINT******************************&&&&&&&&&&&&&&*\n";
-                    sendNack(p);
-                    miss =false;
-                    key = 0;
-                }
+                sendNack(p);
+                miss =false;
+                key = 0;
+            }
          }
         if(seq[src] != p->getSeq()){
             //update the check symbol
@@ -74,26 +71,23 @@ try{
             seq[src] = p->getSeq();
             seq[src]++;
             }
-
         }
-
- /**   else {
-            //is  missing data
-            bubble("receive the missing data");
-            EV << p->getType()<<" receive the missing data\n";
-    }*/
+//===
+    }
+    else {
+        getParentModule()->bubble("Gateway get data");
+    }
 }
 catch(...){
-        send(msg->dup(),"queue");
-
+        send(msg->dup(),"queue");//Nack from other nodes send to queue directly
 }
 
 
-  //  send(p->dup(),"")
+
 }
 Nack *reTransfer::createNack(int source){
     char temp[20];
-    sprintf(temp,"Nack %d",seq[0]);
+    sprintf(temp,"Nack ask for %d packets",key);
     Nack *pkt = new Nack(temp);
     for(int i=0;i<key;i++){
        pkt->setSeq(i,misq[i]);
@@ -103,7 +97,7 @@ Nack *reTransfer::createNack(int source){
     pkt->setDest(source);
     pkt->setSource(getParentModule()->getId());
     pkt->setNum(key);
-    pkt->setStatus(1000);
+    pkt->setStatus(0);
     pkt->setFinalkey(key);
 
 
@@ -126,18 +120,10 @@ void reTransfer::sendNack(Data *p){
 
     //set destination
     char dest[10];//请确认sr中是否有定位目的接点的职责
- //   sprintf(dest,"node[%d]",p->getSource());
-//    node = simulation.getModuleByPath(dest);
-///   if (!node) error("node not found");
 
     //create the packet
-    Nack *pk = createNack(p->getSource());//==================simulation.getModuleByPath(dest)->getId()==
+    Nack *pk = createNack(p->getSource());
     send(pk,"queue");
     EV <<"NACK PACKET GENERATED\n";
-    //send to next level
- //   pk->setBitLength(pkLenBits->longValue());
- //   simtime_t duration = pk->getBitLength() / txRate;
- //   sendDirect(pk, radioDelay, duration, node->gate("in"));
-
     }
 }; // namespace
