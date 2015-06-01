@@ -47,15 +47,17 @@ try{
     }
 
     //MESSAGE WITHOUT ERROR
-    else if(p->getDest()!= getParentModule()->getId()){  //the sink is not gateway
+    else  //the sink is not gateway
         if(p->getType() >= 0){ //
-         int src = p->getSource();
+
+             int src = p->getSource();
+        if(p->getDest()!= getParentModule()->getId()){
         char temp[20]="";
         sprintf(temp,"%f",p->getData());
         cMessage *data = new cMessage(temp);
         send(data,"data");//send data to queue to generate a  new package;
                             //TO FORWARD THE PACKAGE
-
+         }
         if(isCheckPoint(p->getSeq(),p->getState(),p->getSource())){
             if(miss){
                 sendNack(p);
@@ -71,7 +73,7 @@ try{
             seq[src] = p->getSeq();
             seq[src]++;
             }
-        }
+
 //===
     }
     else {
@@ -119,7 +121,7 @@ void reTransfer::sendNack(Data *p){
     bubble("Found packet missing,send Nack");
 
     //set destination
-    char dest[10];//请确认sr中是否有定位目的接点的职责
+    char dest[10];//璇风‘璁r涓槸鍚︽湁瀹氫綅鐩殑鎺ョ偣鐨勮亴璐�
 
     //create the packet
     Nack *pk = createNack(p->getSource());

@@ -58,7 +58,7 @@ void DelayControl::handleMessage(cMessage *msg)
         else
             t = 0.005;///ln/((state+1)*dblrand()*5);
         //schedule the task
-        scheduleAt(simTime()+0.1,notice);
+        scheduleAt(simTime()+dblrand(),notice);
         Time.record(t);
         qlength.record(state);
         lastTime = lastTime +t;
