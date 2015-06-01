@@ -99,7 +99,7 @@ Nack *reTransfer::createNack(int source){
     pkt->setDest(source);
     pkt->setSource(getParentModule()->getId());
     pkt->setNum(key);
-    pkt->setStatus(0);
+    pkt->setStatus(1);
     pkt->setFinalkey(key);
 
 

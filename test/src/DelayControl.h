@@ -15,6 +15,7 @@ private:
     simtime_t lastTime;
     int ln,lq;
     int state,hstate; //current state and histroty state
+    int nextS;
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);

@@ -16,10 +16,10 @@ void DelayControl::initialize()
     lastTime = simTime();
     ln = 1;
     lq = 0;
-    state = hstate = 0;
+    state = hstate = 1;
     Time.setName("time");
     qlength.setName("length of the queue");
-
+    nextS=1;
 }
 
 void DelayControl::handleMessage(cMessage *msg)
@@ -41,24 +41,27 @@ void DelayControl::handleMessage(cMessage *msg)
                 d.insert(pk);
                 EV <<"INSERT ONE TO QUEUE d\n";
             }
-            else {n.insert(pk);EV <<"INSERT ONE TO QUEUE n \n";}
+            else {n.insert(pk);
+
+            EV <<"INSERT ONE TO QUEUE n \n";}
             cMessage *notice = new cMessage("notice");
         int lq = n.length()+d.length();
         if(lq == 0){
             state = 1;
         }
         else
-            state = 1;
-            //state = lq/ln + 0.8*hstate;
+           // state = 1;
+            state = lq/ln + 0.8*hstate;
 
         double t=2.0;
-        if(state == 1){
-            t = 0.001;//dblrand()/10;
+        if(state == 1 || nextS){ //have no data to send
+            t = dblrand()*nextS;
         }
         else
-            t = 0.005;///ln/((state+1)*dblrand()*5);
+            t = ((state+1)*5)/nextS/ln*dblrand();//ln*dblrand()/((state+1)*5)
+        pk->setState(state);
         //schedule the task
-        scheduleAt(simTime()+dblrand(),notice);
+        scheduleAt(simTime()+t,notice);
         Time.record(t);
         qlength.record(state);
         lastTime = lastTime +t;
