@@ -65,6 +65,7 @@ void nQueue::handleMessage(cMessage *msg)
                sprintf(temp,"resend data %lf,seq = %d",ack->getData(),ack->getSeq());
                  ack->setName(temp);
                  ack->setState(nack->getStatus());
+                 EV << "NODE RECEIVE NACK FORM SINK, THE STATE OF SINK = " <<nack->getStatus()<<"\n";
                  ack->setType(1);//the data was missed in the previous transmit.
                  send(ack,"control");
              }

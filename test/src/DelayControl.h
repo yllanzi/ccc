@@ -22,6 +22,7 @@ protected:
     double getNexTime(int lq,int ln);
     cOutVector Time;
     cOutVector qlength;
+    cOutVector getstatus;
 };
 
 }; // namespace

@@ -14,12 +14,12 @@ Define_Module(DelayControl);
 void DelayControl::initialize()
 {
     lastTime = simTime();
-    ln = 1;
+    ln = 0;
     lq = 0;
     state = hstate = 1;
     Time.setName("time");
     qlength.setName("length of the queue");
-    nextS=1;
+    getstatus.setName("status of nack");
 }
 
 void DelayControl::handleMessage(cMessage *msg)
@@ -36,14 +36,19 @@ void DelayControl::handleMessage(cMessage *msg)
     else{
         try{//if Data type
             Data *pk = check_and_cast<Data *>(msg);
-            if(pk->getType()==0){//this is normal data
-                ln = pk->getState();
-                d.insert(pk);
+            if(pk->getType()==0){//this is new data from sensor
+                pk->setState(state);
+                d.insert(pk->dup());
                 EV <<"INSERT ONE TO QUEUE d\n";
             }
-            else {n.insert(pk);
+            else {
+                ln = pk->getState();
+                EV << "this is Dc receive resend data,STATE GOT FROM NQUQUE" <<pk->getState() <<"\n";
+                pk->setState(state);
+                n.insert(pk->dup());
 
             EV <<"INSERT ONE TO QUEUE n \n";}
+
             cMessage *notice = new cMessage("notice");
         int lq = n.length()+d.length();
         if(lq == 0){
@@ -51,15 +56,16 @@ void DelayControl::handleMessage(cMessage *msg)
         }
         else
            // state = 1;
-            state = lq/ln + 0.8*hstate;
+            state = lq/(ln+1) + 0.8*hstate;
+        EV << state <<"  lq = "<<lq <<" ln = "<< ln <<"hstate = "<< hstate<<"\n" ;
 
         double t=2.0;
-        if(state == 1 || nextS){ //have no data to send
-            t = dblrand()*nextS;
+        if(state == 1 || ln == 1){ //have no data to send or next hop is free
+            t = dblrand()*0.5;
         }
         else
-            t = ((state+1)*5)/nextS/ln*dblrand();//ln*dblrand()/((state+1)*5)
-        pk->setState(state);
+            t = dblrand()*ln/(state+1); //((state+1)*5)/nextS/ln*dblrand();//ln*dblrand()/((state+1)*5)
+            pk->setState(state);
         //schedule the task
         scheduleAt(simTime()+t,notice);
         Time.record(t);
@@ -70,6 +76,7 @@ void DelayControl::handleMessage(cMessage *msg)
         {
            Nack *pk = check_and_cast<Nack *>(msg);
            pk->setStatus(state);
+           EV << "THIS IS dCONTROL, state = "<<state <<"\n";
            send(pk,"send");
         }
     }
