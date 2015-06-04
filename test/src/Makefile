@@ -29,12 +29,12 @@ O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
 OBJS = \
-    $O/Sink.o \
     $O/DelayControl.o \
-    $O/Sensor.o \
     $O/nQueue.o \
     $O/reTransfer.o \
     $O/SendReceive.o \
+    $O/Sensor.o \
+    $O/Sink.o \
     $O/Data_m.o \
     $O/Nack_m.o
 
