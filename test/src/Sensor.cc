@@ -38,10 +38,10 @@ void Sensor::handleMessage(cMessage *msg)
     cMessage *sendata = new cMessage(temp);
     bubble("Get a new data!");
     send(sendata,"out");
-//    scheduleAt(simTime()+par("sendInterval").doubleValue(),timerMsg);
-    if(simTime()<=12 && simTime() >=5)
+
+    if(simTime()<=20 && simTime() >=30)
         t=0.2;
-    scheduleAt(simTime()+dblrand()*t,timerMsg);
+    scheduleAt(simTime()+dblrand()*t*0.5,timerMsg);
 
 }
 

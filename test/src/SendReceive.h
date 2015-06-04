@@ -19,10 +19,11 @@ private:
     simtime_t radioDelay;
     double errorRate;
     int nexthop;
+    int battery;
 protected:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);
-
+     cOutVector  battry;
 };
 
 }; // namespace

@@ -20,6 +20,7 @@ void DelayControl::initialize()
     Time.setName("time");
     qlength.setName("length of the queue");
     getstatus.setName("status of nack");
+    flag =  par("flag");
 }
 
 void DelayControl::handleMessage(cMessage *msg)
@@ -37,14 +38,20 @@ void DelayControl::handleMessage(cMessage *msg)
         try{//if Data type
             Data *pk = check_and_cast<Data *>(msg);
             if(pk->getType()==0){//this is new data from sensor
-                pk->setState(state);
+                if(!flag)
+                    pk->setState(1);
+                else
+                    pk->setState(state);
                 d.insert(pk->dup());
                 EV <<"INSERT ONE TO QUEUE d\n";
             }
             else {
                 ln = pk->getState();
                 EV << "this is Dc receive resend data,STATE GOT FROM NQUQUE" <<pk->getState() <<"\n";
-                pk->setState(state);
+                if(flag)
+                    pk->setState(1);
+                else
+                    pk->setState(state);
                 n.insert(pk->dup());
 
             EV <<"INSERT ONE TO QUEUE n \n";}
@@ -65,6 +72,9 @@ void DelayControl::handleMessage(cMessage *msg)
         }
         else
             t = dblrand()*ln/(state+1); //((state+1)*5)/nextS/ln*dblrand();//ln*dblrand()/((state+1)*5)
+        if(flag)
+            pk->setState(1);
+        else
             pk->setState(state);
         //schedule the task
         scheduleAt(simTime()+t,notice);
@@ -75,7 +85,10 @@ void DelayControl::handleMessage(cMessage *msg)
         catch(...)//Nack which will be send to source (as a sink)
         {
            Nack *pk = check_and_cast<Nack *>(msg);
-           pk->setStatus(state);
+           if(!flag)
+               pk->setStatus(1);
+           else
+               pk->setStatus(state);
            EV << "THIS IS dCONTROL, state = "<<state <<"\n";
            send(pk,"send");
         }

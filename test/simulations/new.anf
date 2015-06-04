@@ -25,6 +25,21 @@
         </items>
       </items>
     </datasets>
+    <datasets name="rate of channel Wsn.Sink2.queue">
+      <items xsi:type="scave:Add" filterPattern="run(General-0-20150604-14:17:53-8964) AND file(/test/simulations/a-0.vec) AND attr:configname(General) AND attr:runnumber(0) AND module(Wsn.Sink2.queue) AND name(&quot;rate of channel&quot;)" type="VECTOR"/>
+      <items xsi:type="scave:Add" filterPattern="run(General-1-20150604-14:18:06-8436) AND file(/test/simulations/a-1.vec) AND attr:configname(General) AND attr:runnumber(1) AND module(Wsn.Sink2.queue) AND name(&quot;rate of channel&quot;)" type="VECTOR"/>
+      <items xsi:type="scave:Group" name="rate of channel Wsn.Sink2.queue">
+        <items xsi:type="scave:Apply" operation="mean"/>
+        <items xsi:type="scave:LineChart" name="rate of channel Wsn.Sink2.queue" lineNameFormat="">
+          <properties name="Y.Axis.Min" value="0.7"/>
+          <properties name="Y.Axis.Max" value="1.0"/>
+          <properties name="X.Axis.Min" value="0.0"/>
+          <properties name="X.Axis.Max" value="50.0"/>
+          <properties name="Symbols.Type" value="None"/>
+          <properties name="Line.Type" value="SampleHold"/>
+        </items>
+      </items>
+    </datasets>
   </datasets>
   <chartSheets/>
 </scave:Analysis>
