@@ -6,8 +6,8 @@ module Node
         bool sendInitialMessage = default(false);
         @signal[state](type="long");
         @statistic[radioState](source="state"; title="Radio state"; enum="IDLE=0,TRANSMIT=1"; record=vector);
-        double txRate @unit(bps);         // transmission rate
-        double radioDelay @unit(s);       // propagation delay of radio link
+        double txRate @unit(bps);        
+        double radioDelay @unit(s);       
         volatile int pkLenBits @unit(b);
         volatile double sendInterval @unit(s) = default(exponential(1s));
         volatile double errorRate;

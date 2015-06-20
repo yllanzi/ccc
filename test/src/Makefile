@@ -129,19 +129,16 @@ $O/Data_m.o: Data_m.cc \
 $O/DelayControl.o: DelayControl.cc \
 	Data_m.h \
 	DelayControl.h \
-	Nack_m.h \
-	comm.h
+	Nack_m.h
 $O/Nack_m.o: Nack_m.cc \
 	Nack_m.h
 $O/SendReceive.o: SendReceive.cc \
 	Data_m.h \
 	Nack_m.h \
-	SendReceive.h \
-	comm.h
+	SendReceive.h
 $O/Sensor.o: Sensor.cc \
 	Data_m.h \
-	Sensor.h \
-	comm.h
+	Sensor.h
 $O/Sink.o: Sink.cc \
 	Data_m.h \
 	Nack_m.h \
@@ -149,11 +146,9 @@ $O/Sink.o: Sink.cc \
 $O/nQueue.o: nQueue.cc \
 	Data_m.h \
 	Nack_m.h \
-	comm.h \
 	nQueue.h
 $O/reTransfer.o: reTransfer.cc \
 	Data_m.h \
 	Nack_m.h \
-	comm.h \
 	reTransfer.h
 

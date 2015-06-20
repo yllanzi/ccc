@@ -1,23 +1,5 @@
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-// 
-// You should have received a copy of the GNU Lesser General Public License
-// along with this program.  If not, see http://www.gnu.org/licenses/.
-// 
-
 #include "Sensor.h"
-#include "comm.h"
 #include <string>
-
-
 using std::string;
 namespace test {
 
@@ -31,18 +13,13 @@ void Sensor::initialize()
 
 void Sensor::handleMessage(cMessage *msg)
 {
-    double t=1;
     double data = dblrand()*10;
     char temp[30];
     sprintf(temp,"%f",data);
     cMessage *sendata = new cMessage(temp);
     bubble("Get a new data!");
     send(sendata,"out");
-
-    if(simTime()<=20 && simTime() >=30)
-        t=0.2;
-    scheduleAt(simTime()+dblrand()*t*0.5,timerMsg);
-
+    scheduleAt(simTime()+dblrand(),timerMsg);
 }
 
 

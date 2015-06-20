@@ -16,7 +16,7 @@
 
 
 /**
- * Class generated from <tt>Nack.msg:17</tt> by nedtool.
+ * Class generated from <tt>Nack.msg:2</tt> by nedtool.
  * <pre>
  * packet Nack
  * {

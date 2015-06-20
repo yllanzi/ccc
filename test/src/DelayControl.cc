@@ -1,6 +1,5 @@
 
 #include "DelayControl.h"
-#include "comm.h"
 #include <string>
 #include "Data_m.h"
 #include "Nack_m.h"

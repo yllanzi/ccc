@@ -3,7 +3,6 @@
 #define __TEST_NODE_H
 
 #include <omnetpp.h>
-#include "comm.h"
 #include "Data_m.h"
 using std::string;
 namespace test {
